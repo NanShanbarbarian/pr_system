@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.Competition" table="competition" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="ctId" type="java.lang.Integer">
+            <column name="ct_id" not-null="true" />
+        </property>
+        <property name="workName" type="string">
+            <column name="work_name" length="50" not-null="true" />
+        </property>
+        <property name="level" type="java.lang.Integer">
+            <column name="level" not-null="true">
+                <comment>
+                &#187;&#241;&#189;&#177;&#178;&#227;&#180;&#206;&#163;&#168;1&#185;&#250;&#188;&#210;&#188;&#182;/2&#202;&#161;&#188;&#182;/3&#202;&#208;&#188;&#182;/4&#208;&#163;&#188;&#182;/5&#212;&#186;&#188;&#182;&#163;&#169;</comment>
+            </column>
+        </property>
+        <property name="rank" type="java.lang.Integer">
+            <column name="rank" not-null="true">
+                <comment>
+                &#187;&#241;&#189;&#177;&#181;&#200;&#188;&#182;&#163;&#168;0&#204;&#216;&#181;&#200;&#189;&#177;/1&#210;&#187;&#181;&#200;&#189;&#177;/2&#182;&#254;&#181;&#200;&#189;&#177;/3&#200;&#253;&#181;&#200;&#189;&#177;/4&#176;&#178;&#206;&#191;&#189;&#177;&#163;&#169;</comment>
+            </column>
+        </property>
+        <property name="member1" type="string">
+            <column name="member1" length="30" not-null="true" />
+        </property>
+        <property name="member2" type="string">
+            <column name="member2" length="30" />
+        </property>
+        <property name="member3" type="string">
+            <column name="member3" length="30" />
+        </property>
+        <property name="member4" type="string">
+            <column name="member4" length="30" />
+        </property>
+        <property name="member5" type="string">
+            <column name="member5" length="30" />
+        </property>
+        <property name="member6" type="string">
+            <column name="member6" length="30" />
+        </property>
+        <property name="member7" type="string">
+            <column name="member7" length="30" />
+        </property>
+        <property name="member8" type="string">
+            <column name="member8" length="30" />
+        </property>
+        <property name="member9" type="string">
+            <column name="member9" length="30" />
+        </property>
+        <property name="member10" type="string">
+            <column name="member10" length="30" />
+        </property>
+        <property name="teacher" type="string">
+            <column name="teacher" length="60" not-null="true" />
+        </property>
+        <property name="winningTime" type="date">
+            <column name="winning_time" length="10" not-null="true" />
+        </property>
+        <property name="period" type="string">
+            <column name="period" length="9" not-null="true" />
+        </property>
+        <property name="term" type="java.lang.Integer">
+            <column name="term" not-null="true">
+                <comment>&#187;&#241;&#189;&#177;&#209;&#167;&#198;&#218;(1&#201;&#207;&#209;&#167;&#198;&#218;&#163;&#172;2&#207;&#194;&#209;&#167;&#198;&#218;)</comment>
+            </column>
+        </property>
+        <property name="isPass" type="java.lang.Integer">
+            <column name="isPass" not-null="true">
+                <comment>&#201;&#234;&#199;&#235;&#215;&#180;&#204;&#172;(0&#213;&#253;&#179;&#163;&#163;&#172;1&#201;&#234;&#199;&#235;)</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

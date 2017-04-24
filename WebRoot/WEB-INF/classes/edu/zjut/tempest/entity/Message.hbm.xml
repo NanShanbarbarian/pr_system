@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.Message" table="message" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="projectId" type="java.lang.Integer">
+            <column name="project_id" not-null="true" />
+        </property>
+        <property name="senderId" type="java.lang.Integer">
+            <column name="sender_id" not-null="true" />
+        </property>
+        <property name="receiverId" type="java.lang.Integer">
+            <column name="receiver_id" not-null="true" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" length="10000" not-null="true" />
+        </property>
+        <property name="createtime" type="timestamp">
+            <column name="createtime" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.GiftedMentor" table="giftedmentor" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="leader" type="java.lang.String">
+        	<column name="leader" not-null="true"/>
+        </property>
+        <property name="title">
+        	<column name="title" />
+        </property>
+        <property name="member" type="java.lang.String">
+        	<column name="member" />
+        </property>
+        
+       <property name="teachingAsistant" type="java.lang.Integer">
+       		<column name="teaching_asistant" not-null="true" />
+       </property>
+       <property name="labAsistant" type="java.lang.Integer">
+       		<column name="lab_asistant" not-null="true" />
+       </property>
+       <property name="competitionNum" type="java.lang.Integer">
+       		<column name="competition_num" not-null="true" />
+       </property>
+       <property name="researchAsistant" type="java.lang.Integer">
+       		<column name="research_asistant" not-null="true" />
+       </property>
+       
+        <property name="publisherId" type="java.lang.Integer">
+        	<column name="publisher_id" not-null="true" />
+        </property>
+        <property name="publishTime" type="java.util.Date">
+        	<column name="publish_time" not-null="true" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+        	<column name="status" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

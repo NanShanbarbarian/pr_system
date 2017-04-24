@@ -1,0 +1,83 @@
+input[type="checkbox"].switch
+{
+	position: absolute;
+	opacity: 0;
+}
+
+/* Normal Track */
+input[type="checkbox"].ios-switch + div
+{
+	vertical-align: middle;
+	width: 40px;
+	height: 20px;
+	border: 1px solid rgba(0,0,0,0.4);
+	border-radius: 99px;
+	background-color: rgba(0, 0, 0, 0.1);
+	/* 过渡时间 */
+	transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;     /* Firefox 4*/
+	-webkit-transition-duration: 0.5s;	/* Safari and Chrome*/
+	-o-transition-duration: 0.5s;		/* Opera */
+	/* 把鼠标指针放到 div 元素上，会产生带有平滑改变元素宽度的过渡效果 */
+	transition-property: background-color, box-shadow;
+	-moz-transition-property: background-color, box-shadow;
+	-webkit-transition-property: background-color, box-shadow;
+	-o-transition-property: background-color, box-shadow;
+	
+	/* box-shadow属性向框内添加一个或多个阴影 */
+	box-shadow: inset 0 0 0 0px rgba(0,0,0,0.4);
+	margin: 15px 1.2em 15px 2.5em;
+}
+
+/* Green Track */
+input[type="checkbox"].ios-switch:checked + div
+{
+	width: 40px;
+	background-position: 0 0;
+	background-color: #00e359;
+	border: 1px solid #0e62cd;
+	box-shadow: inset 0 0 0 10px rgba(0,227,89,1);
+}
+
+/* Normal Knob */
+input[type="checkbox"].ios-switch + div > div
+{
+	float: left;
+	width: 18px;
+	height: 18px;
+	border-radius: inherit;
+	background: #ffffff;
+	/* 以相同的速度从开始到结束的过渡效果,cubic-bezier贝塞尔曲线 */
+	transition-timing-function: cubic-bezier(0.54,1.85,.5,1);
+	transition-duration: 1s;
+	transition-property: transform, background-color, box-shadow;
+	
+	-webkit-transition-timing-function: cubic-bezier(0.54,1.85,.5,1);
+	-webkit-transition-duration: 0.5s;
+	-webkit-transition-property: transform, background-color, box-shadow;
+	
+	-moz-transition-timing-function: cubic-bezier(.54,1.85,.5,1);
+	-moz-transition-duration: 0.5s;
+	-moz-transition-property: transform, background-color;
+	
+	-o-transition-timing-function: cubic-bezier(0.54,1.85,.5,1);
+	-o-transition-duration: 0.5s;
+	-o-transition-property: transform, background-color, box-shadow;
+	
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3), 0px 0px 0 1px rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+	margin-top: 1px;
+	margin-left: 1px;
+}
+
+/* Checked Knob */
+input[type="checkbox"].ios-switch:checked + div > div
+{
+	/* 旋转div元素,translate3d(x,y,z)定义3d转换 */
+	transform: translate3d(20px, 0, 0);    /*以x轴旋转*/
+	-webkit-transform: translate3d(20px, 0, 0);  
+	-moz-transform: translate3d(20px, 0, 0);
+	-o-transform: translate3d(20px, 0, 0);
+	background-color: #ffffff;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 162, 63,1);
+}

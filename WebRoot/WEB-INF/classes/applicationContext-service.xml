@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	
+	<bean id="loginService" class="edu.zjut.tempest.service.impl.LoginServiceImpl">
+		<property name="loginDAO" ref="loginDAO"></property>
+	</bean>
+	<bean id="studentService" class="edu.zjut.tempest.service.impl.StudentServiceImpl">
+		<property name="studentDAO" ref="studentDAO"></property>
+	</bean>
+	<bean id="teacherService" class="edu.zjut.tempest.service.impl.TeacherServiceImpl">
+		<property name="teacherDAO" ref="teacherDAO"></property>
+	</bean>
+	<bean id="tagService" class="edu.zjut.tempest.service.impl.TagServiceImpl">
+		<property name="tagDAO" ref="tagDAO"></property>
+	</bean>
+	<bean id="ptrService" class="edu.zjut.tempest.service.impl.PtrServiceImpl">
+		<property name="ptrDAO" ref="ptrDAO"></property>
+	</bean>
+	<bean id="strService" class="edu.zjut.tempest.service.impl.StrServiceImpl">
+		<property name="strDAO" ref="strDAO"></property>
+	</bean>
+	<bean id="projectService" class="edu.zjut.tempest.service.impl.ProjectServiceImpl">
+		<property name="projectDAO" ref="projectDAO"></property>
+		<property name="ptrDAO" ref="ptrDAO"></property>
+		<property name="strDAO" ref="strDAO"></property>
+		<property name="tagDAO" ref="tagDAO"></property>
+	</bean>
+	<bean id="uprService" class="edu.zjut.tempest.service.impl.UprServiceImpl">
+		<property name="uprDAO" ref="uprDAO"></property>
+	</bean>
+	<bean id="messageService" class="edu.zjut.tempest.service.impl.MessageServiceImpl">
+		<property name="messageDAO" ref="messageDAO"></property>
+	</bean>
+	
+	<bean id="competitionService" class="edu.zjut.tempest.service.impl.CompetitionServiceImpl">
+		<property name="competitionDAO" ref="competitionDAO"></property>
+	</bean>
+	<bean id="competitionTypeService" class="edu.zjut.tempest.service.impl.CompetitionTypeServiceImpl">
+		<property name="competitionTypeDAO" ref="competitionTypeDAO"></property>
+	</bean>
+	
+	<bean id="paperService" class="edu.zjut.tempest.service.impl.PaperServiceImpl">
+		<property name="paperDAO" ref="paperDAO"></property>
+	</bean>
+	<bean id="patentService" class="edu.zjut.tempest.service.impl.PatentServiceImpl">
+		<property name="patentDAO" ref="patentDAO"></property>
+	</bean>
+	<bean id="scService" class="edu.zjut.tempest.service.impl.ScServiceImpl">
+		<property name="scDAO" ref="scDAO"></property>
+	</bean>
+	<bean id="setupProjectService" class="edu.zjut.tempest.service.impl.SetupProjectServiceImpl">
+		<property name="setupProjectDAO" ref="setupProjectDAO"></property>
+	</bean>
+	
+	<bean id="amService" class="edu.zjut.tempest.service.impl.ActivityManageServiceImpl">
+		<property name="amDAO" ref="amDAO"></property>
+	</bean>
+	<bean id="gmService" class="edu.zjut.tempest.service.impl.GiftedMentorServiceImpl">
+		<property name="gmDAO" ref="gmDAO"></property>
+	</bean>
+	<bean id="msrService" class="edu.zjut.tempest.service.impl.MsrServiceImpl">
+		<property name="msrDAO" ref="msrDAO"></property>
+	</bean>
+</beans>

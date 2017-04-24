@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 添加配置文件  -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	<!-- Spring和Hibernate整合：
+				采用AOP来管理事务实现声明式事务，将service交给spring管理，并且依赖sessionFactory
+		 Spring和Struts整合：
+		 		采用Spring来管理Action，这样Action的依赖就能够注入进来
+		 		Action和它的依赖交给Spring管理，配置在applicationContext-action.xml文件中
+		 		在Struts.xml文件中class对应的是Spring中配置action的id值
+	 -->
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />	
+		<property name="maxPoolSize" value="20"/>
+        <property name="minPoolSize" value="5"/>
+        <!-- 初始化建立的连接数 -->
+        <property name="initialPoolSize" value="10"/>
+        <!-- 最大空闲时间，120秒内未被使用的连接将被丢弃 -->
+        <property name="maxIdleTime" value="120"/>
+        <!-- 当连接池耗尽，且未达到最大连接数时，一次获取的连接数 -->
+        <property name="acquireIncrement" value="2"/>
+        <!-- 空闲检查时间间隔， 每隔120秒检查连接池里的空闲连接 ，单位是秒-->
+        <property name="idleConnectionTestPeriod" value="120"/>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">	
+		<!-- 注入dataSource，给sessionFactoryBean内setDataSource提供数据源 -->	
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+</beans>

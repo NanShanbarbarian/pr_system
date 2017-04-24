@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.MentorStudentRelation" table="mentorstudentrelation" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="gmId" type="java.lang.Integer">
+        	<column name="gm_id" not-null="true" />
+        </property>
+        <property name="stuLoginId" type="java.lang.Integer">
+        	<column name="stu_login_id" not-null="true" />
+        </property>
+         <property name="type" type="java.lang.Integer">
+        	<column name="type" not-null="true" />
+        </property>
+       	<property name="isPass" type="java.lang.Integer">
+       		<column name="isPass" not-null="true" />
+       	</property>
+    </class>
+</hibernate-mapping>

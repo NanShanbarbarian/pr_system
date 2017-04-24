@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	
+	<bean id="loginDAO" class="edu.zjut.tempest.dao.impl.LoginDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="studentDAO" class="edu.zjut.tempest.dao.impl.StudentDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="teacherDAO" class="edu.zjut.tempest.dao.impl.TeacherDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="tagDAO" class="edu.zjut.tempest.dao.impl.TagDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="ptrDAO" class="edu.zjut.tempest.dao.impl.PtrDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectDAO" class="edu.zjut.tempest.dao.impl.ProjectDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="strDAO" class="edu.zjut.tempest.dao.impl.StrDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="uprDAO" class="edu.zjut.tempest.dao.impl.UprDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="messageDAO" class="edu.zjut.tempest.dao.impl.MessageDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="competitionDAO" class="edu.zjut.tempest.dao.impl.CompetitionDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="competitionTypeDAO" class="edu.zjut.tempest.dao.impl.CompetitionTypeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="paperDAO" class="edu.zjut.tempest.dao.impl.PaperDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="patentDAO" class="edu.zjut.tempest.dao.impl.PatentDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="scDAO" class="edu.zjut.tempest.dao.impl.ScDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="setupProjectDAO" class="edu.zjut.tempest.dao.impl.SetupProjectDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="amDAO" class="edu.zjut.tempest.dao.impl.ActivityManageDAOImpl">
+	</bean>
+	<bean id="gmDAO" class="edu.zjut.tempest.dao.impl.GiftedMentorDAOImpl">
+	</bean>
+	<bean id="msrDAO" class="edu.zjut.tempest.dao.impl.MsrDAOImpl">
+	</bean>
+</beans>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.Project" table="project" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="30" not-null="true" />
+        </property>
+        <property name="num" type="java.lang.Integer">
+            <column name="num" not-null="true" />
+        </property>
+        <property name="period" type="string">
+            <column name="period" length="20" not-null="true" />
+        </property>
+        <property name="keyword" type="string">
+            <column name="keyword" length="30" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="500" />
+        </property>
+        <property name="requirement" type="string">
+            <column name="requirement" length="500" />
+        </property>
+        <property name="teacherId" type="java.lang.Integer">
+            <column name="teacher_id" not-null="true" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="selectCount" type="java.lang.Integer">
+            <column name="select_count" not-null="true" />
+        </property>
+        <property name="createtime" type="timestamp">
+            <column name="createtime" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

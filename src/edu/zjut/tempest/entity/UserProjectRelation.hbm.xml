@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.UserProjectRelation" table="userprojectrelation" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="projectId" type="java.lang.Integer">
+            <column name="project_id" not-null="true" />
+        </property>
+        <property name="stuLoginId" type="java.lang.Integer">
+            <column name="stu_login_id" not-null="true" />
+        </property>
+        <property name="teaLoginId" type="java.lang.Integer">
+            <column name="tea_login_id" not-null="true" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="stuScore" type="java.lang.Integer">
+            <column name="stu_score" not-null="true" />
+        </property>
+        <property name="teaScore" type="java.lang.Integer">
+            <column name="tea_score" not-null="true" />
+        </property>
+        <property name="stuRemark" type="string">
+            <column name="stu_remark" length="200" />
+        </property>
+        <property name="teaRemark" type="string">
+            <column name="tea_remark" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

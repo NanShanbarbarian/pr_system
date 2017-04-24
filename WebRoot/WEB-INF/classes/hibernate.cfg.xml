@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">qwer</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pr_system?characterEncoding=UTF-8&amp;&amp;useSSL=true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        
+        <property name="hibernate.connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
+        
+        <!-- 最小连接数 -->
+        <property name="hibernate.c3p0.min_size">5</property>
+        
+        <!-- 最大连接数 -->
+        <property name="hibernate.c3p0.max_size">20</property>
+       
+        <!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
+        <property name="hibernate.c3p0.timeout">120</property>
+        <!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements
+            属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。
+            如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0-->
+        <property name="hibernate.c3p0.max_statements">100</property>
+        <!--maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0 -->
+        <property name="hibernate.c3p0.maxStatementsPerConnection">100</property>
+        <!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒-->
+        <property name="hibernate.c3p0.idle_test_period">120</property>
+        <!-- 当连接池耗尽，且未达到最大连接数时，一次获取的连接数 -->
+        <property name="hibernate.c3p0.acquire_increment">2</property>
+        <property name="hibernate.c3p0.testConnectionOnCheckout">true</property>
+        
+         <!--初始化时获取10个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+        <property name="c3p0.initialPoolSize">10</property>
+        
+        <mapping resource="edu/zjut/tempest/entity/Competition.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Login.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/UserProjectRelation.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Patent.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Student.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/CompetitionType.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/StudentTagRelation.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/SetupProject.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Paper.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/ProjectTagRelation.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Teacher.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Message.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Project.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Tag.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/SoftwareCopyright.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/GiftedMentor.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/MentorStudentRelation.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/ActivityManage.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

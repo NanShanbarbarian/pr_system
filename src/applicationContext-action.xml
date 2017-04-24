@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	
+	<bean id="LoginAction" class="edu.zjut.tempest.action.LoginAction" scope="prototype">
+		<property name="loginService" ref="loginService" />
+		<property name="studentService" ref="studentService" />
+		<property name="teacherService" ref="teacherService" />
+	</bean>
+	<bean id="StudentAction" class="edu.zjut.tempest.action.StudentAction" scope="prototype">
+		<property name="studentService" ref="studentService" />
+		<property name="loginService" ref="loginService" />
+		<property name="strService" ref="strService" />
+		<property name="tagService" ref="tagService" />
+		<property name="uprService" ref="uprService" />
+	</bean>
+	<bean id="TeacherAction" class="edu.zjut.tempest.action.TeacherAction" scope="prototype">
+		<property name="teacherService" ref="teacherService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	<bean id="TagAction" class="edu.zjut.tempest.action.TagAction" scope="prototype">
+		<property name="tagService" ref="tagService" />
+	</bean>
+	<bean id="ProjectAction" class="edu.zjut.tempest.action.ProjectAction" scope="prototype">
+		<property name="projectService" ref="projectService" />
+		<property name="ptrService" ref="ptrService" />
+		<property name="tagService" ref="tagService" />
+		<property name="teacherService" ref="teacherService" />
+		<property name="uprService" ref="uprService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	
+	<bean id="PtrAction" class="edu.zjut.tempest.action.PtrAction" scope="prototype">
+		<property name="ptrService" ref="ptrService" />
+		<property name="tagService" ref="tagService" />
+	</bean>
+	<bean id="StrAction" class="edu.zjut.tempest.action.StrAction" scope="prototype">
+		<property name="strService" ref="strService" />
+		<property name="tagService" ref="tagService" />
+	</bean>
+	<bean id="UprAction" class="edu.zjut.tempest.action.UprAction" scope="prototype">
+		<property name="uprService" ref="uprService" />
+		<property name="projectService" ref="projectService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	<bean id="MessageAction" class="edu.zjut.tempest.action.MessageAction" scope="prototype">
+		<property name="messageService" ref="messageService" />
+	</bean>
+	
+	<bean id="CompetitionAction" class="edu.zjut.tempest.action.CompetitionAction" scope="prototype">
+		<property name="competitionService" ref="competitionService" />
+		<property name="competitionTypeService" ref="competitionTypeService" />
+		<property name="studentService" ref="studentService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	<bean id="CompetitionTypeAction" class="edu.zjut.tempest.action.CompetitionTypeAction" scope="prototype">
+		<property name="competitionTypeService" ref="competitionTypeService" />
+	</bean>
+	
+	<bean id="PaperAction" class="edu.zjut.tempest.action.PaperAction" scope="prototype">
+		<property name="paperService" ref="paperService" />
+		<property name="studentService" ref="studentService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	<bean id="PatentAction" class="edu.zjut.tempest.action.PatentAction" scope="prototype">
+		<property name="patentService" ref="patentService" />
+		<property name="studentService" ref="studentService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	<bean id="ScAction" class="edu.zjut.tempest.action.ScAction" scope="prototype">
+		<property name="scService" ref="scService" />
+		<property name="studentService" ref="studentService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	<bean id="SetupProjectAction" class="edu.zjut.tempest.action.SetupProjectAction" scope="prototype">
+		<property name="setupProjectService" ref="setupProjectService" />
+		<property name="studentService" ref="studentService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	
+	
+	<bean id="AmAction" class="edu.zjut.tempest.action.ActivityManageAction" scope="prototype">
+		<property name="amService" ref="amService" />
+	</bean>
+	<bean id="GmAction" class="edu.zjut.tempest.action.GiftedMentorAction" scope="prototype">
+		<property name="gmService" ref="gmService" />
+		<property name="msrService" ref="msrService" />
+		<property name="studentService" ref="studentService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+	<bean id="MsrAction" class="edu.zjut.tempest.action.MsrAction" scope="prototype">
+		<property name="msrService" ref="msrService" /> 
+		<property name="studentService" ref="studentService" />
+		<property name="loginService" ref="loginService" />
+	</bean>
+</beans>

@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+html,body {
+	width: 100%;
+	height: 100%;
+	font-family: "Microsoft YaHei","SimHei";
+	font-size:14px;
+	color:#666;
+}
+
+.login_info {
+	width: 100%;
+	height:100%;
+	padding-top: 15%;
+	background: url('../images/login_bg.jpg') no-repeat center 0px;
+	background-color: #191c2d; 
+}
+
+.login_title {
+	text-align: center;
+	font-size: 40px;
+	color: #87CEFA;
+}
+
+.login_div {
+	z-index: 1000; 
+	float: right; 
+	background-color: rgba(230,230,250,0.3);
+	border-radius: 5px;
+	width: 300px;
+	position: absolute; 
+	right: 3%;
+	top: 10%;
+	margin-top: 10%;
+}
+
+.login_div form {
+	padding: 10px 20px 15px 20px;
+}
+
+.login_foot {
+	float: right;
+	margin-top: 5px;
+				
+}
+.word1 {
+	color: #2ec0f6;
+}
+.word2 {
+	color: white;
+}
+.login_foot a {
+	color: #87CEFA;
+	text-decoration:none;
+}
+.login_foot a:hover {
+	color: white;
+}

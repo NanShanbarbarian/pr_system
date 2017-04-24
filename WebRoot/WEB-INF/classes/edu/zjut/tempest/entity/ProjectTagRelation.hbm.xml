@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.ProjectTagRelation" table="projecttagrelation" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="projectId" type="java.lang.Integer">
+            <column name="project_id" not-null="true" />
+        </property>
+        <property name="tagId1" type="java.lang.Integer">
+            <column name="tag_id1" />
+        </property>
+        <property name="tagId2" type="java.lang.Integer">
+            <column name="tag_id2" />
+        </property>
+        <property name="tagId3" type="java.lang.Integer">
+            <column name="tag_id3" />
+        </property>
+        <property name="tagId4" type="java.lang.Integer">
+            <column name="tag_id4" />
+        </property>
+        <property name="tagId5" type="java.lang.Integer">
+            <column name="tag_id5" />
+        </property>
+        <property name="tagId6" type="java.lang.Integer">
+            <column name="tag_id6" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+.main-content2 {
+	width: 90%;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	font-weight: lighter;
+	margin: 30px auto;
+	padding: 30px 20px 80px 20px;
+	background-color: #fff;
+	min-height: 800px;
+}
+.subcontainer {
+	width:60%;
+	margin:50px auto;
+	overflow: hidden;
+}
+.subcontainer ul { 
+	list-style:none;
+	padding:0;
+	margin:0px; 
+}
+.subcontainer ul li { 
+	margin-top:2px; 
+}
+.content { 
+	width:98%;
+	border-bottom: #DCDCDC 1px solid;
+	clear:both; 
+}
+.subcontent {
+	float: left;
+	width: 70%;
+	margin-left: 20px;
+	margin-top: 2px;
+}
+.operate {
+	float: right;
+	width: 25%;
+	padding-left: 10%;
+	margin-top: 20px;
+}
+
+a {
+	text-decoration: none;
+}
+a : hover {
+	text-decoration: none;
+}

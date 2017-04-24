@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>pr_system</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 配置Struts2的主过滤器 -->
+  <filter>
+  	<filter-name>struts2</filter-name>
+  	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>struts2</filter-name>
+  	<url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  
+  <!-- 配置用户登录验证过滤类 -->
+  <filter>
+  	<filter-name>loginValidateFilter</filter-name>
+  	<filter-class>edu.zjut.tempest.filter.LoginValidateFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>loginValidateFilter</filter-name>
+  	<url-pattern>/user/*</url-pattern>
+  	<url-pattern>/content/*</url-pattern>
+  </filter-mapping>
+  
+    <!-- 优才导师计划是否开启验证过滤类 -->
+  <filter>
+  	<filter-name>GiftedMentorFilter</filter-name>
+  	<filter-class>edu.zjut.tempest.filter.GiftedMentorFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>GiftedMentorFilter</filter-name>
+  	<url-pattern>/content/student/mentor/*</url-pattern>
+  	<url-pattern>/content/teacher/mentor/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 配置Spring监听器，监听器的启动等级比过滤器高，所以放在后面也无所谓 -->
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:applicationContext-*.xml</param-value>
+  </context-param>
+  
+  
+</web-app>

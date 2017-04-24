@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="main" namespace="/" extends="struts-default">
+	
+		<action name="login*" class="LoginAction" method="login{1}">
+			<result name="login_success" type="redirect">user/user.jsp</result>
+			<result name="login_error" type="redirect">login_error.jsp</result>
+			<result name="login_out_success" type="redirect">index.jsp</result>
+			<result name="login_out_error" type="redirect">error.jsp</result>
+			<result name="getListOnApply_success" type="dispatcher">content/admin/applyUser/applyUser_list.jsp</result>
+			<result name="getById_success" type="dispatcher">content/admin/applyUser/applyUser_info.jsp</result>
+		</action>
+		
+		<action name="student*" class="StudentAction" method="student{1}">
+			<result name="getStudent_success" type="dispatcher">content/student/student_manage.jsp</result>
+			<result name="getById_success" type="dispatcher">content/student/student_info.jsp</result>
+			<result name="getById2_success" type="dispatcher">content/teacher/project/student_info.jsp</result>
+			<result name="getById3_success" type="dispatcher">content/teacher/mentor/student_info.jsp</result>
+			<result name="getById_error" type="redirect">content/student/student_manage.jsp</result>
+			<result name="getByProjectId1_success" type="dispatcher">content/teacher/project/student_apply.jsp</result>
+			<result name="getByProjectId2_success" type="dispatcher">content/teacher/project/student_selected.jsp</result>
+			<result name="getByProjectId3_success" type="dispatcher">content/teacher/project/evaluate.jsp</result>
+			<result name="exportExcel_success" type="stream">
+		    	<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param> 
+			</result>
+			<result name="getByQuery_success" type="dispatcher">content/student/student_query.jsp</result>
+		</action>
+		<action name="teacher*" class="TeacherAction" method="teacher{1}">
+			<result name="getTeacher_success" type="dispatcher">content/teacher/teacher_manage.jsp</result>
+			<result name="getAdmin_success" type="dispatcher">content/admin/admin_manage.jsp</result>
+			<result name="getTeacherById_success" type="dispatcher">content/teacher/teacher_info.jsp</result>
+			<result name="getTeacherById_error" type="redirect">content/teacher/teacher.jsp</result>
+			<result name="getAdminById_success" type="dispatcher">content/admin/admin_info.jsp</result>
+			<result name="getAdminById_error" type="redirect">content/admin/admin_manage.jsp</result>
+			<result name="exportExcel_success" type="stream">
+		    	<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param> 
+			</result>
+			<result name="getByQuery_success" type="dispatcher">content/teacher/teacher_query.jsp</result>
+		</action>
+		
+		<action name="tag*" class="TagAction" method="tag{1}">
+			<result name="getList_success" type="dispatcher">content/tag/tag_manage.jsp</result>
+			<result name="getListOnSearch_success" type="dispatcher">content/tag/tag_search.jsp</result>
+		</action>
+		
+		<action name="project*" class="ProjectAction" method="project{1}">
+			<result name="getListByTeacherId_success" type="dispatcher">content/teacher/project/project_manage.jsp</result>
+			<result name="getListByStuLoginId_success" type="dispatcher">content/student/project/project_my_list.jsp</result>
+			<result name="recommend_success" type="dispatcher">content/student/project/project_recommend_list.jsp</result>
+			<result name="getAllList_success" type="dispatcher">content/project/project_manage.jsp</result>
+		</action>
+		
+		<action name="ptr*" class="PtrAction" method="ptr{1}"></action>
+		<action name="str*" class="StrAction" method="str{1}"></action>
+		<action name="upr*" class="UprAction" method="upr{1}"></action>
+		<action name="message*" class="MessageAction" method="message{1}">
+			<result name="getListOnTeacherAndReceiver_success" type="dispatcher">content/teacher/project/message_receive.jsp</result>
+			<result name="getListOnTeacherAndSender_success" type="dispatcher">content/teacher/project/message_sent.jsp</result>
+			<result name="getListOnStudentAndSender_success" type="dispatcher">content/student/project/message_sent.jsp</result>
+			<result name="getListOnStudentAndReceiver_success" type="dispatcher">content/student/project/message_receive.jsp</result>
+		</action>
+		
+		<action name="competition*" class="CompetitionAction" method="competition{1}">
+			<result name="getListByNumber_success" type="dispatcher">content/innovation/competition/history_list.jsp</result>
+			<result name="getById_success" type="dispatcher">content/innovation/competition/competition_info.jsp</result>
+			<result name="getById2_success" type="dispatcher">content/admin/innovation/competition/competition_info.jsp</result>
+			<result name="getApplyList_success" type="dispatcher">content/admin/innovation/competition/apply_list.jsp</result>
+			<result name="getPassedList_success" type="dispatcher">content/admin/innovation/competition/competition_list.jsp</result>
+			<result name="exportExcel_success" type="stream">
+		    	<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param> 
+			</result>
+			<result name="getByQuery_success" type="dispatcher">content/admin/innovation/competition/competition_query.jsp</result>
+		</action>
+		<action name="ct*" class="CompetitionTypeAction" method="ct{1}"></action>
+		
+		<action name="paper*" class="PaperAction" method="paper{1}">
+			<result name="getListByNumber_success" type="dispatcher">content/innovation/paper/history_list.jsp</result>
+			<result name="getById_success" type="dispatcher">content/innovation/paper/paper_info.jsp</result>
+			<result name="getById2_success" type="dispatcher">content/admin/innovation/paper/paper_info.jsp</result>
+			<result name="getApplyList_success" type="dispatcher">content/admin/innovation/paper/apply_list.jsp</result>
+			<result name="getPassedList_success" type="dispatcher">content/admin/innovation/paper/paper_list.jsp</result>
+			<result name="exportExcel_success" type="stream">
+		    	<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param> 
+			</result>
+			<result name="getByQuery_success" type="dispatcher">content/admin/innovation/paper/paper_query.jsp</result>
+		</action>
+		
+		<action name="patent*" class="PatentAction" method="patent{1}">
+			<result name="getListByNumber_success" type="dispatcher">content/innovation/patent/history_list.jsp</result>
+			<result name="getById_success" type="dispatcher">content/innovation/patent/patent_info.jsp</result>
+			<result name="getById2_success" type="dispatcher">content/admin/innovation/patent/patent_info.jsp</result>
+			<result name="getApplyList_success" type="dispatcher">content/admin/innovation/patent/apply_list.jsp</result>
+			<result name="getPassedList_success" type="dispatcher">content/admin/innovation/patent/patent_list.jsp</result>
+			<result name="exportExcel_success" type="stream">
+		    	<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param> 
+			</result>
+			<result name="getByQuery_success" type="dispatcher">content/admin/innovation/patent/patent_query.jsp</result>
+		</action>
+		
+		<action name="sc*" class="ScAction" method="sc{1}">
+			<result name="getListByNumber_success" type="dispatcher">content/innovation/sc/history_list.jsp</result>
+			<result name="getById_success" type="dispatcher">content/innovation/sc/sc_info.jsp</result>
+			<result name="getById2_success" type="dispatcher">content/admin/innovation/sc/sc_info.jsp</result>
+			<result name="getApplyList_success" type="dispatcher">content/admin/innovation/sc/apply_list.jsp</result>
+			<result name="getPassedList_success" type="dispatcher">content/admin/innovation/sc/sc_list.jsp</result>
+			<result name="exportExcel_success" type="stream">
+		    	<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param> 
+			</result>
+			<result name="getByQuery_success" type="dispatcher">content/admin/innovation/sc/sc_query.jsp</result>
+		</action>
+		
+		<action name="setuppro*" class="SetupProjectAction" method="setuppro{1}">
+			<result name="getList_success" type="dispatcher">content/admin/innovation/setuppro/setuppro_list.jsp</result>
+			<result name="getById_success" type="dispatcher">content/admin/innovation/setuppro/setuppro_info.jsp</result>
+			<result name="exportExcel_success" type="stream">
+		    	<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param> 
+			</result>
+			<result name="getByQuery_success" type="dispatcher">content/admin/innovation/setuppro/setuppro_query.jsp</result>
+		</action>
+		
+		<action name="am*" class="AmAction" method="am{1}">
+			<result name="getList_success" type="dispatcher">content/admin/system/activity_list.jsp</result>
+		</action>
+		<action name="gm*" class="GmAction" method="gm{1}">
+			<result name="getListByPublisherId_success" type="dispatcher">content/teacher/mentor/mentor_list.jsp</result>
+			<result name="getById1_success" type="dispatcher">content/teacher/mentor/mentor_info.jsp</result>
+			<result name="getById2_success" type="dispatcher">content/student/mentor/mentor_info1.jsp</result>
+			<result name="getById3_success" type="dispatcher">content/student/mentor/mentor_info2.jsp</result>
+			<result name="getById4_success" type="dispatcher">content/admin/mentor/mentor_info.jsp</result>
+			<result name="getSelectList_success" type="dispatcher">content/student/mentor/mentor_select_list.jsp</result>
+			<result name="getListByStuLoginId_success" type="dispatcher">content/student/mentor/mentor_list.jsp</result>
+			<result name="getAllList_success" type="dispatcher">content/admin/mentor/mentor_list.jsp</result>
+			<result name="exportExcel_success" type="stream">
+		    	<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param> 
+			</result>
+		</action>
+		<action name="msr*" class="MsrAction" method="msr{1}">
+			<result name="getListByStuLoginId_success" type="dispatcher">content/student/mentor/mentor_list.jsp</result>
+			<result name="applyStudent_success" type="dispatcher">content/teacher/mentor/student_apply.jsp</result>
+			<result name="selectedStudent_success" type="dispatcher">content/teacher/mentor/student_selected.jsp</result>
+		</action>
+	</package>
+</struts>    

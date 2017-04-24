@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.CompetitionType" table="competitiontype" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <property name="category" type="java.lang.Integer">
+            <column name="category" not-null="true">
+                <comment>
+                &#190;&#186;&#200;&#252;&#192;&#224;&#177;&#240;&#163;&#168;0&#215;&#168;&#210;&#181;&#200;&#252;&#202;&#194;&#163;&#187;1&#183;&#199;&#215;&#168;&#210;&#181;&#200;&#252;&#202;&#194;&#163;&#169;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

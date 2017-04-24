@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-9 20:00:46 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="edu.zjut.tempest.entity.Student" table="student" catalog="pr_system" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="30" not-null="true" />
+        </property>
+        <property name="sex" type="int">
+            <column name="sex" not-null="true" />
+        </property>
+        <property name="experience" type="java.lang.Integer">
+            <column name="experience" not-null="true" />
+        </property>
+        <property name="level" type="java.lang.Integer">
+            <column name="level" not-null="true" />
+        </property>
+        <property name="academy" type="string">
+            <column name="academy" length="20" not-null="true" />
+        </property>
+        <property name="major" type="string">
+            <column name="major" length="20" not-null="true" />
+        </property>
+        <property name="grade" type="string">
+            <column name="grade" length="10" not-null="true" />
+        </property>
+        <property name="className" type="string">
+            <column name="class_name" length="10" not-null="true" />
+        </property>
+        <property name="nation" type="string">
+            <column name="nation" length="20" not-null="true" />
+        </property>
+        <property name="polity" type="string">
+            <column name="polity" length="10"/>
+        </property>
+        <property name="telephone" type="string">
+            <column name="telephone" length="20" not-null="true" />
+        </property>
+        <property name="cornet" type="string">
+            <column name="cornet" length="10" />
+        </property>
+        <property name="qq" type="string">
+            <column name="qq" length="20" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="dormitory" type="string">
+            <column name="dormitory" length="20" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="300" />
+        </property>
+    </class>
+</hibernate-mapping>
