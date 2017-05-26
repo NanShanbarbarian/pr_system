@@ -54,4 +54,5 @@ public interface ProjectDAO {
 	public int getProjectCount();
 	
 	public List<Project> getProjectAllList(int begin, int rowsPage);
+	
 }

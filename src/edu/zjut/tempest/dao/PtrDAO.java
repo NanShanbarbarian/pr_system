@@ -9,4 +9,5 @@ public interface PtrDAO {
 	public ProjectTagRelation getProjectByProjectId(int projectId);
 	
 	public void deletePtr(ProjectTagRelation ptr);
+	
 }

@@ -57,12 +57,13 @@ html,body {
 
 .none-border {
 	border: none;
+	outline: none;
 }
 
 .user-nav {
 	float: right;
 	padding-top: 35px;
-	padding-right: 15px;
+	margin-right: 50px;
 }
 
 .nav-bar {

@@ -24,4 +24,11 @@ public interface UprDAO {
 	
 	public List<UserProjectRelation> getUPRList(int projectId);
 	
+	/**
+	 * getListByStuLoginId 通过stuLoginId获得该学生所参与过的项目列表
+	 * @param stuLoginId
+	 * @return
+	 */
+	public List<UserProjectRelation> getListByStuLoginId(int stuLoginId);
+	
 }

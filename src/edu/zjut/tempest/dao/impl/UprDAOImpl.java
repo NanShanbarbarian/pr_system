@@ -92,6 +92,17 @@ public class UprDAOImpl implements UprDAO{
 		return null;
 	}
 	
+	@Override
+	public List<UserProjectRelation> getListByStuLoginId(int stuLoginId) {
+		Session session = HibernateSessionFactory.getSession();
+		List<UserProjectRelation> list = session.createQuery("from UserProjectRelation where stu_login_id=?0 and status=0", UserProjectRelation.class).setParameter(0, stuLoginId).getResultList();
+		
+		HibernateSessionFactory.closeSession();
+		if(list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
+	}
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -99,5 +110,5 @@ public class UprDAOImpl implements UprDAO{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 }

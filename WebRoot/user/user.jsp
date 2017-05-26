@@ -17,6 +17,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/sidebar/sidebar-menu.css">
 	<link rel="stylesheet" href="css/main.css">
+	<script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/sidebar//sidebar-menu.js"  type="text/javascript"></script>
 
 </head>
 <body>
@@ -30,19 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</aside>
 		
 		<section class="main-container">
-			<header class="main-head">
-				<div class="dropdown user-nav">
-				  <button class="btn btn-default dropdown-toggle none-border" type="button" data-toggle="dropdown">
-				     ${sessionScope.user.name}
-				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" id="dropdown-width">
-				    <li><a href="user/profile/super_admin.jsp">个人资料</a></li>
-				    <li class="divider"></li>
-				    <li><a href="login_out.action">注销</a></li>
-				  </ul>
-				</div>
-			</header>
+			<jsp:include page="top.jsp"></jsp:include>
 			<section>
 				<!-- <ul class="breadcrumb nav-bar">
 					<li><a href="javascript:void(0);">科技创新智能互助平台</a></li>
@@ -55,9 +46,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</section>
 	</section>
 
-<script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
-<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/sidebar//sidebar-menu.js"  type="text/javascript"></script>
 <script>
 	$.sidebarMenu($('.sidebar-menu'))
 </script>

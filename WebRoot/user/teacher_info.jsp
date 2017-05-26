@@ -47,19 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</aside>
 		
 		<section class="main-container">
-			<header class="main-head">
-				<div class="dropdown user-nav">
-				  <button class="btn btn-default dropdown-toggle none-border" type="button" data-toggle="dropdown">
-				     ${sessionScope.user.name}
-				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" id="dropdown-width">
-				    <li><a href="#">个人资料</a></li>
-				    <li class="divider"></li>
-				    <li><a href="login_out.action">注销</a></li>
-				  </ul>
-				</div>
-			</header>
+			<jsp:include page="top.jsp"></jsp:include>
 			<section>
 				<ul class="breadcrumb nav-bar">
 					<li><a href="javascript:void(0);">科技创新智能互助平台</a></li>
@@ -69,97 +57,133 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="main-content">
 					<div class="main-content2">
 					<div class="form-horizontal">
-						<div class="form-group">
-				    		<label class="col-sm-2 control-label">姓名</label>
-				    		<div class="col-sm-8">
-				    			<span class = "form-control">${sessionScope.user.name}</span>
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+						    		<label class="col-xs-3 control-label">姓名</label>
+						    		<div class="col-xs-8">
+						    			<span class = "form-control">${sessionScope.user.name}</span>
+						    		</div>
+						    	</div>
 				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">工号</label>
-				    		<div class="col-sm-8">
-				    			<span class = "form-control">${sessionScope.login.number}</span>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">角色</label>
-				    		<div class="col-sm-8">
-				    			<c:if test="${sessionScope.login.role == '0'}">
-				    				<span class = "form-control">超级管理员</span>
-				    			</c:if>
-				    			<c:if test="${sessionScope.login.role == '1'}">
-				    				<span class = "form-control">管理员</span>
-				    			</c:if>
-				    			<c:if test="${sessionScope.login.role == '2'}">
-				    				<span class = "form-control">项目发布者</span>
-				    			</c:if>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">学院</label>
-				    		<div class="col-sm-8">
-				    			<span class = "form-control">${sessionScope.user.academy}</span>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">职称</label>
-				    		<div class="col-sm-8">
-				    			<c:if test="${sessionScope.user.level == '0'}">
-				    				<span class = "form-control">教授</span>
-				    			</c:if>
-				    			<c:if test="${sessionScope.user.level == '1'}">
-				    				<span class = "form-control">副教授</span>
-				    			</c:if>
-				    			<c:if test="${sessionScope.user.level == '2'}">
-				    				<span class = "form-control">讲师</span>
-				    			</c:if>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">性别</label>
-				    		<div class="col-sm-8">
-				    			<c:if test="${sessionScope.user.sex == '0'}">
-				    				<span class = "form-control">男</span>
-				    			</c:if>
-				    			<c:if test="${sessionScope.user.sex == '1'}">
-				    				<span class = "form-control">女</span>
-				    			</c:if>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">号码</label>
-				    		<div class="col-sm-8">
-				    			<span class = "form-control">${sessionScope.user.telephone}</span>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">短号</label>
-				    		<div class="col-sm-8">
-				    			<span class = "form-control">${sessionScope.user.cornet}</span>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">QQ</label>
-				    		<div class="col-sm-8">
-				    			<span class = "form-control">${sessionScope.user.qq}</span>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">邮箱</label>
-				    		<div class="col-sm-8">
-				    			<span class = "form-control">${sessionScope.user.email}</span>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<label class="col-sm-2 control-label">简介</label>
-				    		<div class="col-sm-8">
-				    			<textarea class = "form-control" style="width:100%; height:80px;vertical-align:top;resize:none;">${sessionScope.user.description}</textarea>
-				    		</div>
-				    	</div>
-				    	<div class="form-group">
-				    		<div class="col-sm-2 col-sm-offset-5">
-				    		<a class="btn btn-info" href="user/teacher_alter.jsp" style="font-size: 13px;">点击修改</a>
-				    		</div>
+				    		<div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-2 control-label">工号</label>
+						    		<div class="col-xs-8">
+						    			<span class = "form-control">${sessionScope.login.number}</span>
+						    		</div>
+						    	</div>
+						    </div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-3 control-label">角色</label>
+						    		<div class="col-xs-8">
+						    			<c:if test="${sessionScope.login.role == '0'}">
+						    				<span class = "form-control">超级管理员</span>
+						    			</c:if>
+						    			<c:if test="${sessionScope.login.role == '1'}">
+						    				<span class = "form-control">管理员</span>
+						    			</c:if>
+						    			<c:if test="${sessionScope.login.role == '2'}">
+						    				<span class = "form-control">项目发布者</span>
+						    			</c:if>
+						    		</div>
+						    	</div>
+						    </div>
+						    <div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-2 control-label">学院</label>
+						    		<div class="col-xs-8">
+						    			<span class = "form-control">${sessionScope.user.academy}</span>
+						    		</div>
+						    	</div>
+						    </div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-3 control-label">职称</label>
+						    		<div class="col-xs-8">
+						    			<c:if test="${sessionScope.user.level == '0'}">
+						    				<span class = "form-control">教授</span>
+						    			</c:if>
+						    			<c:if test="${sessionScope.user.level == '1'}">
+						    				<span class = "form-control">副教授</span>
+						    			</c:if>
+						    			<c:if test="${sessionScope.user.level == '2'}">
+						    				<span class = "form-control">讲师</span>
+						    			</c:if>
+						    		</div>
+						    	</div>
+						    </div>
+						    <div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-2 control-label">性别</label>
+						    		<div class="col-xs-8">
+						    			<c:if test="${sessionScope.user.sex == '0'}">
+						    				<span class = "form-control">男</span>
+						    			</c:if>
+						    			<c:if test="${sessionScope.user.sex == '1'}">
+						    				<span class = "form-control">女</span>
+						    			</c:if>
+						    		</div>
+						    	</div>
+						    </div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-3 control-label">号码</label>
+						    		<div class="col-xs-8">
+						    			<span class = "form-control">${sessionScope.user.telephone}</span>
+						    		</div>
+						    	</div>
+						    </div>
+						    <div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-2 control-label">短号</label>
+						    		<div class="col-xs-8">
+						    			<span class = "form-control">${sessionScope.user.cornet}</span>
+						    		</div>
+						    	</div>
+						    </div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-3 control-label">QQ</label>
+						    		<div class="col-xs-8">
+						    			<span class = "form-control">${sessionScope.user.qq}</span>
+						    		</div>
+						    	</div>
+						    </div>
+						    <div class="col-xs-6">
+						    	<div class="form-group">
+						    		<label class="col-xs-2 control-label">邮箱</label>
+						    		<div class="col-xs-8">
+						    			<span class = "form-control">${sessionScope.user.email}</span>
+						    		</div>
+						    	</div>
+						    </div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+					    	<div class="form-group">
+					    		<label class="col-xs-3 control-label">简介</label>
+					    		<div class="col-xs-8">
+					    			<textarea class = "form-control" style="width:100%; height:80px;vertical-align:top;resize:none;">${sessionScope.user.description}</textarea>
+					    		</div>
+					    	</div>
+					    	</div>
+					    </div>
+					    <div class="row" style="margin-top: 30px;">
+					    	<div class="form-group">
+					    		<div class="col-xs-2 col-xs-offset-5">
+					    		<a class="btn btn-info" href="user/teacher_alter.jsp" style="font-size: 13px;">点击修改</a>
+					    		</div>
+					    	</div>
 				    	</div>
 				    </div>
 				    </div>
