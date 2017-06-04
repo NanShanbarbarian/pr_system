@@ -53,10 +53,10 @@ public class ProjectServiceImpl implements ProjectService{
 	
 	public List<Project> getProjectByRecommed(int loginId) {
 		npList = projectDAO.getListByStatus(0);
-		
 		List<UserProjectRelation> uprList = uprDAO.getListByStuLoginId(loginId);
 		
-		if(uprList.size() > 0) {
+		if(uprList != null && uprList.size() > 0) {
+			jpList =  new ArrayList<Project>();
 			for(UserProjectRelation upr : uprList) {
 				jpList.add(projectDAO.getProjectById(upr.getProjectId()));
 			}

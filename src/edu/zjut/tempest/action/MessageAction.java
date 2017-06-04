@@ -2,8 +2,11 @@ package edu.zjut.tempest.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +15,7 @@ import org.apache.struts2.ServletActionContext;
 
 import edu.zjut.tempest.entity.Message;
 import edu.zjut.tempest.service.MessageService;
+import edu.zjut.tempest.util.DateUtil;
 
 public class MessageAction {
 
@@ -40,15 +44,34 @@ public class MessageAction {
 		}
 	}
 	
+	/**
+	 * 返回项目开发者的发送消息或收到消息列表
+	 * @return
+	 */
 	public String message_getListOnStudent() {
 		
 		if(projectId != null) {
 			HttpServletRequest request = ServletActionContext.getRequest();
-			List<Message> list = null;
+			List<Message> msgList = null;
+			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 			if(senderId != null) {
-				list = messageService.getMessageBySenderId(projectId, senderId);
+				msgList = messageService.getMessageBySenderId(projectId, senderId);
+				for(int i=0; i<msgList.size(); i++) {
+					Map<String, Object> map = new LinkedHashMap<String, Object>();
+					map.put("id", msgList.get(i).getId());
+					map.put("createtime", DateUtil.datetime((msgList.get(i).getCreatetime())));
+					
+					list.add(map);
+				}
 			} else if(receiverId != null) {
-				list = messageService.getMessageByReceiverId(projectId, receiverId);
+				msgList = messageService.getMessageByReceiverId(projectId, receiverId);
+				for(int i=0; i<msgList.size(); i++) {
+					Map<String, Object> map = new LinkedHashMap<String, Object>();
+					map.put("id", msgList.get(i).getId());
+					map.put("createtime", DateUtil.datetime((msgList.get(i).getCreatetime())));
+					
+					list.add(map);
+				}
 			}
 			request.setAttribute("list", list);
 		}
@@ -63,8 +86,17 @@ public class MessageAction {
 	public String message_getListOnTeacher() {
 		if(projectId != null && senderId != null && receiverId != null) {
 			HttpServletRequest request = ServletActionContext.getRequest();
-			List<Message> list = null;
-			list = messageService.getMessageBySenderIdAndReceiverId(projectId, senderId, receiverId);
+			List<Message> msgList = null;
+			msgList = messageService.getMessageBySenderIdAndReceiverId(projectId, senderId, receiverId);
+			
+			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+			for(int i=0; i<msgList.size(); i++) {
+				Map<String, Object> map = new LinkedHashMap<String, Object>();
+				map.put("id", msgList.get(i).getId());
+				map.put("createtime", DateUtil.datetime((msgList.get(i).getCreatetime())));
+				
+				list.add(map);
+			}
 			request.setAttribute("list", list);
 		}
 		

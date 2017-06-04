@@ -27,6 +27,7 @@
 		<property name="ptrDAO" ref="ptrDAO"></property>
 		<property name="strDAO" ref="strDAO"></property>
 		<property name="tagDAO" ref="tagDAO"></property>
+		<property name="uprDAO" ref="uprDAO"></property>
 	</bean>
 	<bean id="uprService" class="edu.zjut.tempest.service.impl.UprServiceImpl">
 		<property name="uprDAO" ref="uprDAO"></property>

@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			float: right; 
 			width: 75%; 
 			height: 70%; 
+			padding: 10px;
 		}
 	</style>
 </head>
@@ -45,10 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			<c:otherwise>
  			<input type="hidden" name="receiveId" id="receiveId" value="${list[0].id}">
  			<c:forEach items="${list}" var="item"> 
- 				<button type="button" class="list-group-item list-content" onclick="message_read(${item.id})">${item.content}</button>
- 				<%-- <c:if test="${item.status == 1}">
- 					<span class="badge">1</span>
- 				</c:if> --%>
+ 				<button type="button" class="list-group-item list-content" onclick="message_read(${item.id})">${item.createtime}</button>
  			</c:forEach>
  			</c:otherwise>
  		</c:choose>
@@ -65,10 +63,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 		
 		function message_read(id) {
-			var ue = UE.getEditor('receive_content',{
-				autoHeightEnabled: true,
-			    autoFloatEnabled: true,
-			});	
 			
 			$.ajax({
 				type : 'post',
@@ -77,16 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					id : id
 				},
 				success : function(data) {
-					/* ue.addListener("ready", function () {
-				        // editor准备好之后才可以使用	
-						ue.setContent(data);
-						ue.setDisabled('fullscreen');
-	
-					});  */
-					ue.ready(function() {
-						ue.setContent(data);
-						ue.setDisabled('fullscreen');
-					});
+					$("#receive_content").html(data);
 				}
 			});
 			
