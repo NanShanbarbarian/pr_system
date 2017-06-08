@@ -31,12 +31,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		
 		.manage_content {
-			width: 70%; 
+			width: 90%; 
 			font-family: '微软雅黑'; 
 			font-size: 14px;
 			font-weight: lighter;
 			margin: 30px auto;
-			padding: 60px 30px 80px 30px;
+			padding: 50px;
 			background-color: #fff;
 		}
 		
@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<th>开发周期</th>
 					<th>创建时间</th>
 					<th>项目状态</th>
+					<th>操作</th>
 				</tr>
 			</thead>
 			<tbody>		
@@ -110,6 +111,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			<c:if test="${item.status == '2'}">
 	    				<td onclick="clickThis(${item.id})">已完成</td>
 	    			</c:if>
+		    		<td>
+						<button class="btn btn-info btn-xs" onclick="project_alter(${item.id})">修改</button>
+						<button class="btn btn-danger btn-xs" onclick="project_remove(${item.id})">删除</button>
+					</td>
 	    		</tr>
 				</c:forEach>
 				</c:if>
@@ -153,6 +158,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	}
 	
+	function project_remove(id) {
+		$.ajax({
+			type : 'post',
+			url : 'project_remove.action',
+			data : {
+				id : id
+			},
+			success : function() {
+				window.location.href = "content/teacher/project/project_my.jsp";
+			},
+			error : function() {
+				window.location.href = "content/teacher/project/project_my.jsp";
+			}
+		});
+	}
+	
+	function project_alter(id) {
+		$.ajax({
+			type : 'post',
+			url : 'project_getById.action?id=' + id,
+			success : function(data) {
+				$('#manage_content').html(data);
+			},
+			error : function() {
+				window.location.href = "content/teacher/project/project_my.jsp";
+			}
+		});
+	}
 </script>
 </body>
 </html>

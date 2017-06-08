@@ -55,6 +55,22 @@ public class PtrDAOImpl implements PtrDAO{
 		}
 	}
 	
+	@Override
+	public void updatePtr(ProjectTagRelation ptr) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tx = session.beginTransaction();
+		
+		try {
+			session.update(ptr);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

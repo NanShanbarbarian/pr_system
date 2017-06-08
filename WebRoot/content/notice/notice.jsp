@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- 引入JSTL核心标签库 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();  
@@ -6,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 	<base href="<%=basePath%>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,24 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/sidebar/sidebar-menu.css">
 	<link rel="stylesheet" href="css/main.css">
-	
-	<style type="text/css">
-		.main-content2 {
-			width: 90%;
-			font-size: 14px;
-			font-family: "微软雅黑";
-			font-weight: lighter;
-			margin: 30px auto;
-			padding: 50px;
-			background-color: #fff;
-		}
-		
-		.form-group label {
-			font-family: '微软雅黑';
-			font-weight: lighter !important; 
-			font-size: 14px;
-		}
-	</style>
 
 </head>
 <body>
@@ -47,24 +30,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</aside>
 		
 		<section class="main-container">
-			<header class="main-head">
-				<div class="dropdown user-nav">
-				  <button class="btn btn-default dropdown-toggle none-border" type="button" data-toggle="dropdown">
-				     ${sessionScope.user.name}
-				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" id="dropdown-width">
-				    <li><a href="user/profile/super_admin.jsp">个人资料</a></li>
-				    <li class="divider"></li>
-				    <li><a href="login_out.action">注销</a></li>
-				  </ul>
-				</div>
-			</header>
+			<jsp:include page="/user/top.jsp"></jsp:include>
 			<section>
 				<ul class="breadcrumb nav-bar">
 					<li><a href="javascript:void(0);">科技创新智能互助平台</a></li>
-					<li><a href="javascript:void(0);">项目信息</a></li>
-					<li class="active">推荐项目</li> 
+					<li><a href="javascript:void(0);">系统活动</a></li>
+					<li class="active">系统公告</li> 
 				</ul>
 				<div class="main-content">
 					<div id="manage_content"></div>
@@ -73,31 +44,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</section>
 	</section>
 
-	
 <script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/sidebar//sidebar-menu.js"  type="text/javascript"></script>
-<script type="text/javascript">
-	$.sidebarMenu($('.sidebar-menu'));
-	
+<script>
+	$.sidebarMenu($('.sidebar-menu'))
 	$(function() {
-		recommend_manage(1);
+		notice_manage(1);
 	});
 	
-	function recommend_manage(currPage) {
+	function notice_manage(currPage) {
 		$.ajax({
-			type : 'post',
-			url : 'project_recommend.action',
-			data : {
-				stuLoginId : '${sessionScope.login.id}',
-				currPage : currPage
+			type: 'post',
+			url: 'notice_getList.action',
+			data: {
+				currPage: currPage
 			},
-			dataType : 'html',
-			success : function(data) {
-				$('#manage_content').html(data);
+			dataType: 'html',
+			success: function(data) {
+				$("#manage_content").html(data);
 			}
 		});
 	}
+	
 </script>
 
 </body>

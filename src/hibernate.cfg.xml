@@ -58,5 +58,6 @@
         <mapping resource="edu/zjut/tempest/entity/GiftedMentor.hbm.xml" />
         <mapping resource="edu/zjut/tempest/entity/MentorStudentRelation.hbm.xml" />
         <mapping resource="edu/zjut/tempest/entity/ActivityManage.hbm.xml" />
+        <mapping resource="edu/zjut/tempest/entity/Notice.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

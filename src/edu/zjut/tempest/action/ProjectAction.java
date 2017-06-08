@@ -38,7 +38,7 @@ public class ProjectAction {
 	
 	private Integer id;
 	private String name;
-	private int num;
+	private String num;
 	private String period;
 	private String keyword;
 	private String description;
@@ -78,6 +78,7 @@ public class ProjectAction {
 			project.setRequirement(requirement);
 			project.setStatus(0);
 			project.setSelectCount(0);
+			project.setState("U");
 			project.setCreatetime(new Date());
 			
 			int id = projectService.saveProject(project);
@@ -129,6 +130,96 @@ public class ProjectAction {
 		}
 	}
 	
+	public void project_update() {
+		try {
+			Project project = projectService.getProjectById(id);
+			
+			project.setName(name);
+			project.setNum(num);
+			project.setPeriod(period);
+			project.setKeyword(keyword);
+			project.setDescription(description);
+			project.setRequirement(requirement);
+			
+			projectService.updateProject(project);
+			
+			ProjectTagRelation ptr = ptrService.getProjectByProjectId(id);
+			
+			//将原标签数量减1
+			if(ptr.getTagId1() != null) {
+				Tag tag = tagService.getTagByName(tag1);
+				tag.setNum(tag.getNum()-1);
+				tagService.updateTag(tag);
+			}
+			if(ptr.getTagId2() != null) {
+				Tag tag = tagService.getTagByName(tag2);
+				tag.setNum(tag.getNum()-1);
+				tagService.updateTag(tag);
+			}
+			if(ptr.getTagId3() != null) {
+				Tag tag = tagService.getTagByName(tag3);
+				tag.setNum(tag.getNum()-1);
+				tagService.updateTag(tag);
+			}
+			if(ptr.getTagId4() != null) {
+				Tag tag = tagService.getTagByName(tag4);
+				tag.setNum(tag.getNum()-1);
+				tagService.updateTag(tag);
+			}
+			if(ptr.getTagId5() != null) {
+				Tag tag = tagService.getTagByName(tag5);
+				tag.setNum(tag.getNum()-1);
+				tagService.updateTag(tag);
+			}
+			if(ptr.getTagId6() != null) {
+				Tag tag = tagService.getTagByName(tag6);
+				tag.setNum(tag.getNum()-1);
+				tagService.updateTag(tag);
+			}
+			
+			//添加相应标签，并且标签数量加1
+			if(!tag1.equals("")) {
+				Tag tag = tagService.getTagByName(tag1);
+				ptr.setTagId1(tag.getId());
+				tag.setNum(tag.getNum()+1);
+				tagService.updateTag(tag);
+			}
+			if(!tag2.equals("")) {
+				Tag tag = tagService.getTagByName(tag2);
+				ptr.setTagId2(tag.getId());
+				tag.setNum(tag.getNum()+1);
+				tagService.updateTag(tag);
+			}
+			if(!tag3.equals("")) {
+				Tag tag = tagService.getTagByName(tag3);
+				ptr.setTagId3(tag.getId());
+				tag.setNum(tag.getNum()+1);
+				tagService.updateTag(tag);
+			}
+			if(!tag4.equals("")) {
+				Tag tag = tagService.getTagByName(tag4);
+				ptr.setTagId4(tag.getId());
+				tag.setNum(tag.getNum()+1);
+				tagService.updateTag(tag);
+			}
+			if(!tag5.equals("")) {
+				Tag tag = tagService.getTagByName(tag5);
+				ptr.setTagId5(tag.getId());
+				tag.setNum(tag.getNum()+1);
+				tagService.updateTag(tag);
+			}
+			if(!tag6.equals("")) {
+				Tag tag = tagService.getTagByName(tag6);
+				ptr.setTagId6(tag.getId());
+				tag.setNum(tag.getNum()+1);
+				tagService.updateTag(tag);
+			}
+			
+			ptrService.updatePtr(ptr);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * project_getListByTeacherId 通过TeacherId分页获得项目列表
 	 * @return
@@ -261,6 +352,15 @@ public class ProjectAction {
 			out.flush();
 			out.close();
 		}
+	}
+	
+	public String project_getById() {
+		Project project = projectService.getProjectById(id);
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		request.setAttribute("project", project);
+		return "getById_success";
 	}
 	
 	/**
@@ -401,7 +501,8 @@ public class ProjectAction {
 				for(UserProjectRelation upr : list) {
 					uprService.deleteUPR(upr);
 				}
-				projectService.deleteProject(project);
+				project.setState("D");
+				projectService.updateProject(project);
 			}
 		}
 	}
@@ -483,11 +584,11 @@ public class ProjectAction {
 		this.name = name;
 	}
 
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
 

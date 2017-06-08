@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			float: right; 
 			width: 75%; 
 			height: 70%; 
-			paddig: 10px;
+			padding: 10px;
 		}
 	</style>
 </head>
@@ -47,9 +47,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			<input type="hidden" name="receiveId" id="receiveId" value="${list[0].id}">
  			<c:forEach items="${list}" var="item"> 
  				<button type="button" class="list-group-item list-content" onclick="message_read(${item.id})">${item.createtime}</button>
- 				<%-- <c:if test="${item.status == 1}">
- 					<span class="badge">1</span>
- 				</c:if> --%>
  			</c:forEach>
  			</c:otherwise>
  		</c:choose>

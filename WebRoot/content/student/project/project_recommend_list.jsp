@@ -18,7 +18,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 	<div class="manage-content">
-		<p class="manage_title">推荐项目</p>
 		<div style="margin-bottom: 3px;">
 			<div style="width:280px; display: inline-block; float: right; ">
 				<span style="width: 200px; display: inline-block; vertical-align: middle;">
@@ -47,9 +46,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </tr>
 				</c:if>		
 				<c:if test="${list != null}">
-				<c:forEach items="${list}" var="item"> 
 				<%  int num = (Integer)request.getAttribute("currPage");
     			int i= (num-1)*10; %>	
+				<c:forEach items="${list}" var="item"> 
 				<tr>
 					<% i++; %> 
     				<td onclick="clickThis(${item.id}, ${item.isApply})"><%= i %></td>

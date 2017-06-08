@@ -9,4 +9,6 @@ public interface PtrService {
 	public ProjectTagRelation getProjectByProjectId(int projectId);
 	
 	public void deletePtr(ProjectTagRelation ptr);
+	
+	public void updatePtr(ProjectTagRelation ptr);
 }

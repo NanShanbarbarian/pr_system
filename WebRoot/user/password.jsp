@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<section>
 				<ul class="breadcrumb nav-bar">
 					<li><a href="javascript:void(0);">科技创新智能互助平台</a></li>
-					<li><a href="javascript:void(0);">用户管理</a></li>
+					<li><a href="javascript:void(0);">账号信息</a></li>
 					<li class="active">修改密码</li> 
 				</ul>
 				<div class="main-content">

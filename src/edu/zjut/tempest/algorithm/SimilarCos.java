@@ -34,7 +34,7 @@ public class SimilarCos {
         }  
     }  
   
-    // ���������ƶ�  
+    // 求余弦相似度  
     public double sim() {  
         double result = 0;  
         result = pointMulti(vectorMap) / sqrtMulti(vectorMap);  
@@ -48,7 +48,7 @@ public class SimilarCos {
         return result;  
     }  
   
-    // ��ƽ����  
+    // 求平方和  
     public double squares(Map<Character, int[]> paramMap) {  
         double result1 = 0;  
         double result2 = 0;  
@@ -61,7 +61,7 @@ public class SimilarCos {
         return result1 * result2;  
     }  
   
-    // ��˷�  
+    // 点乘法  
     public double pointMulti(Map<Character, int[]> paramMap) {  
         double result = 0;  
         Set<Character> keySet = paramMap.keySet();  
@@ -73,8 +73,8 @@ public class SimilarCos {
     }  
   
     public static void main(String[] args) {  
-        String s1 = "����Ʒ�̳�ƽ̨����";  
-        String s2 = "�̳�ƽ̨����";  
+        String s1 = "快消品商城平台开发";  
+        String s2 = "商城平台开发";  
         SimilarCos similarity = new SimilarCos(s1, s2);  
         System.out.println(similarity.sim());  
     }  

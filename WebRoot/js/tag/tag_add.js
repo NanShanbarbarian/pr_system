@@ -32,6 +32,7 @@ function enterSearchTag(e) {	//判断回车
 		keyNum = e.which;
 	}
 	if(keyNum == 13) {
+		$(".tag-list2 button").remove();
 		tag_search();
 	}
 }

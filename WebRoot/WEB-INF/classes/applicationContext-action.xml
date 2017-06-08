@@ -95,4 +95,8 @@
 		<property name="studentService" ref="studentService" />
 		<property name="loginService" ref="loginService" />
 	</bean>
+	
+	<bean id="NoticeAction" class="edu.zjut.tempest.action.NoticeAction" scope="prototype">
+		<property name="noticeService" ref="noticeService" /> 
+	</bean>
 </beans>

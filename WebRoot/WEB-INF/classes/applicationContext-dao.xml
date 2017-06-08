@@ -58,4 +58,8 @@
 	</bean>
 	<bean id="msrDAO" class="edu.zjut.tempest.dao.impl.MsrDAOImpl">
 	</bean>
+	
+	<bean id="noticeDAO" class="edu.zjut.tempest.dao.impl.NoticeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>

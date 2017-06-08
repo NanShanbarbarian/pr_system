@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-	<div style="height: 66%;;" id="send_content"></div>
+	<div style="height: 66%;" id="send_content"></div>
 	<div class="col-sm-offset-5" style="padding-top: 15px;">
 		<button class="btn btn-primary" onclick="message_new()">确定发送</button>
 	</div>

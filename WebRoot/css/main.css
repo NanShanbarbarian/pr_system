@@ -108,3 +108,40 @@ html,body {
 	line-height: 30px;
 	padding: 0 10px;
 }
+
+.news{
+	margin: 0 auto;
+	width: 65%;
+	padding-top: 30px;
+	text-align: left;
+}
+.news h4{
+	float:left;
+}
+
+.news ul li a {
+	text-decoration: none;
+	outline: none;
+	color: #666;
+}
+
+.news ul li a:hover{
+	color:#BD0D23;
+}
+.news .more{
+	float:right;
+	line-height:41px;
+	padding-right:30px;
+}
+.news .more a{
+	text-decoration:none;
+}
+.news .more a:hover{
+	color:#CE1616;
+}
+.fix{
+	clear:both;
+}
+.Fleft{
+	float:left;
+}

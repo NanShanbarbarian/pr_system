@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<hr>
 					<div class="form-horizontal">
 						<div class="form-group">
-				    		<label class="col-sm-4 control-label">组长名称</label>
+				    		<label class="col-sm-4 control-label">组长姓名</label>
 				    		<div class="col-sm-4">
 				    			<input class = "form-control" type="text" name="leader" id="leader">
 				    		</div>

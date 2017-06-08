@@ -65,7 +65,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 	public Project getProjectById(int id) {
 		Session session = HibernateSessionFactory.getSession();
 		
-		List<Project> list = session.createQuery("from Project where id=?0", Project.class).setParameter(0, id).getResultList();
+		List<Project> list = session.createQuery("from Project where id=?0 and state='U'", Project.class).setParameter(0, id).getResultList();
 		
 		HibernateSessionFactory.closeSession();
 		if(list != null && list.size() > 0) {
@@ -82,7 +82,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 	public List<Project> getListByStatus(int status) {
 		Session session = HibernateSessionFactory.getSession();
 		
-		List<Project> list = session.createQuery("from Project where status=?0", Project.class).setParameter(0, status).getResultList();
+		List<Project> list = session.createQuery("from Project where status=?0 and state='U'", Project.class).setParameter(0, status).getResultList();
 		
 		HibernateSessionFactory.closeSession();
 		if(list != null && list.size() > 0) {
@@ -94,7 +94,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 	public int getProjectCountByTeacherId(int teacherId) {
 		Session session = HibernateSessionFactory.getSession();
 		
-		List<Project> list = session.createQuery("from Project where teacher_id=?0", Project.class).setParameter(0, teacherId).getResultList();
+		List<Project> list = session.createQuery("from Project where teacher_id=?0  and state='U'", Project.class).setParameter(0, teacherId).getResultList();
 		
 		HibernateSessionFactory.closeSession();
 		if(list != null && list.size() > 0) {
@@ -106,7 +106,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 	public List<Project> getProjectListByTeacherId(int begin, int rowsPage, int teacherId) {
 		Session session = HibernateSessionFactory.getSession();
 		
-		List<Project> list = session.createQuery("from Project where teacher_id=?0 order by createtime desc", Project.class).setParameter(0, teacherId).setFirstResult(begin).setMaxResults(rowsPage).getResultList();
+		List<Project> list = session.createQuery("from Project where teacher_id=?0 and state='U' order by createtime desc", Project.class).setParameter(0, teacherId).setFirstResult(begin).setMaxResults(rowsPage).getResultList();
 		
 		HibernateSessionFactory.closeSession();
 		return list;
@@ -138,7 +138,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 	public List<Project> getProjectListByStuLoginId(int begin, int rowsPage, int stuLoginId) {
 		Session session = HibernateSessionFactory.getSession();
 		
-		List<Project> list = session.createQuery("select p from Project as p,UserProjectRelation as upr where p.id=upr.projectId and upr.status=0 and upr.stuLoginId=?0 order by p.createtime desc", Project.class).setParameter(0, stuLoginId).setFirstResult(begin).setMaxResults(rowsPage).getResultList();
+		List<Project> list = session.createQuery("select p from Project as p,UserProjectRelation as upr where p.id=upr.projectId and p.state='U' and upr.status=0 and upr.stuLoginId=?0 order by p.createtime desc", Project.class).setParameter(0, stuLoginId).setFirstResult(begin).setMaxResults(rowsPage).getResultList();
 		
 		HibernateSessionFactory.closeSession();
 		if(list != null && list.size() > 0) {
@@ -161,7 +161,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 	public List<Project> getProjectAllList(int begin, int rowsPage) {
 		Session session = HibernateSessionFactory.getSession();
 		
-		List<Project> list = session.createQuery("select p from Project as p,UserProjectRelation as upr where p.id=upr.projectId order by p.createtime desc", Project.class).setFirstResult(begin).setMaxResults(rowsPage).getResultList();
+		List<Project> list = session.createQuery("select p from Project as p,UserProjectRelation as upr where p.id=upr.projectId and p.state='U' order by p.createtime desc", Project.class).setFirstResult(begin).setMaxResults(rowsPage).getResultList();
 		
 		HibernateSessionFactory.closeSession();
 		if(list != null && list.size() > 0) {

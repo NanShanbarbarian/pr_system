@@ -69,7 +69,7 @@
 		</a>
 		<ul class="treeview-menu">
 		  <li><a href="content/admin/mentor/mentor.jsp"><i class="fa fa-circle-o"></i>优才导师计划</a></li>
-		  <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>系统公告</a></li>
+		  <li><a href="content/notice/notice.jsp"><i class="fa fa-circle-o"></i>系统公告</a></li>
 		  <li><a href="content/admin/system/activity.jsp"><i class="fa fa-circle-o"></i>活动管理</a></li>
 		</ul>
 	</li>
@@ -137,7 +137,7 @@
 		</a>
 		<ul class="treeview-menu">
 		  <li><a href="content/admin/mentor/mentor.jsp"><i class="fa fa-circle-o"></i>优才导师计划</a></li>
-		  <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>系统公告</a></li>
+		  <li><a href="content/notice/notice.jsp"><i class="fa fa-circle-o"></i>系统公告</a></li>
 		  <li><a href="content/admin/system/activity.jsp"><i class="fa fa-circle-o"></i>活动管理</a></li>
 		</ul>
 	</li>

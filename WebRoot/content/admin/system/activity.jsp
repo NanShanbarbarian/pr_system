@@ -31,19 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</aside>
 		
 		<section class="main-container">
-			<header class="main-head">
-				<div class="dropdown user-nav">
-				  <button class="btn btn-default dropdown-toggle none-border" type="button" data-toggle="dropdown">
-				     ${sessionScope.user.name}
-				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" id="dropdown-width">
-				    <li><a href="user/profile/super_admin.jsp">个人资料</a></li>
-				    <li class="divider"></li>
-				    <li><a href="login_out.action">注销</a></li>
-				  </ul>
-				</div>
-			</header>
+			<jsp:include page="/user/top.jsp"></jsp:include>
 			<section>
 				<ul class="breadcrumb nav-bar">
 					<li>科技创新智能互助平台</li>

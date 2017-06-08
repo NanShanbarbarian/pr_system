@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-family: "微软雅黑";
 			font-weight: lighter;
 			margin: 30px auto;
-			padding: 100px 20px 80px 20px;
+			padding: 50px 20px 50px 20px;
 			background-color: #fff;
 		}
 		.form-group label {

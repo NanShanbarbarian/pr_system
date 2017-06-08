@@ -10,4 +10,6 @@ public interface PtrDAO {
 	
 	public void deletePtr(ProjectTagRelation ptr);
 	
+	public void updatePtr(ProjectTagRelation ptr);
+	
 }

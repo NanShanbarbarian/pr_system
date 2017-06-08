@@ -20,6 +20,11 @@ public class PtrServiceImpl implements PtrService{
 		ptrDAO.deletePtr(ptr);
 	}
 	
+	@Override
+	public void updatePtr(ProjectTagRelation ptr) {
+		ptrDAO.updatePtr(ptr);
+	}
+	
 	public PtrDAO getPtrDAO() {
 		return ptrDAO;
 	}
@@ -27,4 +32,5 @@ public class PtrServiceImpl implements PtrService{
 	public void setPtrDAO(PtrDAO ptrDAO) {
 		this.ptrDAO = ptrDAO;
 	}
+
 }

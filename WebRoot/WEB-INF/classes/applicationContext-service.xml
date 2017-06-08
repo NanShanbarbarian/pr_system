@@ -65,4 +65,8 @@
 	<bean id="msrService" class="edu.zjut.tempest.service.impl.MsrServiceImpl">
 		<property name="msrDAO" ref="msrDAO"></property>
 	</bean>
+	
+	<bean id="noticeService" class="edu.zjut.tempest.service.impl.NoticeServiceImpl">
+		<property name="noticeDAO" ref="noticeDAO"></property>
+	</bean>
 </beans>

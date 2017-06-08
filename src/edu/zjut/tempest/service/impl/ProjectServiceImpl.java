@@ -6,8 +6,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import edu.zjut.tempest.algorithm.ProjectData;
-import edu.zjut.tempest.algorithm.ProjectRecommend;
+import edu.zjut.tempest.algorithm.SimilarCos;
 import edu.zjut.tempest.dao.ProjectDAO;
 import edu.zjut.tempest.dao.PtrDAO;
 import edu.zjut.tempest.dao.StrDAO;
@@ -35,6 +34,17 @@ public class ProjectServiceImpl implements ProjectService{
 	
 	private static int N = 20;  //推荐数
 	
+	public static class Simi {
+		double value;   //相似值
+		int jpId;   //参与过的项目id
+		int npId;   //发布中的项目id
+	}
+	
+	public class ProjectData {
+		public int projectId;
+		public double score;
+	}
+
 	public int saveProject(Project project) {
 		return projectDAO.saveProject(project);
 	}
@@ -65,24 +75,26 @@ public class ProjectServiceImpl implements ProjectService{
 		//推荐算法
 		List<ProjectData> cfList = new ArrayList<ProjectData>();
 		List<ProjectData> crList = new ArrayList<ProjectData>();
-		
-		ProjectRecommend pr = new ProjectRecommend();
-		if(npList.size() > 0 && jpList.size() > 0) {
-			cfList = pr.projectCF(jpList, npList);
-		}
-		
-		crList = this.projectCR(npList, loginId);
-		
 		List<ProjectData> pdList = new ArrayList<ProjectData>();
-		for(int i=0; i<cfList.size(); i++) {
-			ProjectData pd = new ProjectData();
-			pd.projectId = cfList.get(i).projectId;
-			for(int j=0; j<crList.size(); j++) {
-				if(cfList.get(i).projectId == crList.get(j).projectId) {
-					pd.score = cfList.get(i).score + crList.get(j).score;
-				}
+		if(jpList != null && jpList.size() > 0) {
+			if(npList.size() > 0 && jpList.size() > 0) {
+				cfList = projectCF(jpList, npList);
 			}
-			pdList.add(pd);
+			
+			crList = this.projectCR(npList, loginId);
+			
+			for(int i=0; i<cfList.size(); i++) {
+				ProjectData pd = new ProjectData();
+				pd.projectId = cfList.get(i).projectId;
+				for(int j=0; j<crList.size(); j++) {
+					if(cfList.get(i).projectId == crList.get(j).projectId) {
+						pd.score = cfList.get(i).score + crList.get(j).score;
+					}
+				}
+				pdList.add(pd);
+			}
+		} else {
+			pdList = this.projectCR(npList, loginId);
 		}
 		
 		Collections.sort(pdList,new Comparator<ProjectData>() {
@@ -163,94 +175,162 @@ public class ProjectServiceImpl implements ProjectService{
 		float W1 = 0.6f;
 		float W2 = 0.4f;
 		
-		StudentTagRelation str = strDAO.getByStuLoginId(loginId);
-		List<String> stuTagList = new ArrayList<String>();
-		if(str.getTagId1() != null) {
-			stuTagList.add(tagDAO.getTagById(str.getTagId1()).getName());
-		}
-		if(str.getTagId2() != null) {
-			stuTagList.add(tagDAO.getTagById(str.getTagId2()).getName());
-		}
-		if(str.getTagId3() != null) {
-			stuTagList.add(tagDAO.getTagById(str.getTagId3()).getName());
-		}
-		if(str.getTagId4() != null) {
-			stuTagList.add(tagDAO.getTagById(str.getTagId4()).getName());
-		}
-		if(str.getTagId5() != null) {
-			stuTagList.add(tagDAO.getTagById(str.getTagId5()).getName());
-		}
-		if(str.getTagId6() != null) {
-			stuTagList.add(tagDAO.getTagById(str.getTagId6()).getName());
-		}
-		
 		List<ProjectData> crList = new ArrayList<ProjectData>();
-		
-		//给每个项目进行推荐评分
-		for(int i=0; i<npList.size(); i++) {
-			float score = 0;
-			int num = 0;
+		StudentTagRelation str = strDAO.getByStuLoginId(loginId);
+		if(str != null) {
 			
-			//1.标签
-			//获得项目的标签列表
-			ProjectTagRelation ptr = ptrDAO.getProjectByProjectId(npList.get(i).getId());
-			List<String> proTagList = new ArrayList<String>(); 
-			if(ptr.getTagId1() != null) {
-				proTagList.add(tagDAO.getTagById(ptr.getTagId1()).getName());
+			List<String> stuTagList = new ArrayList<String>();
+			if(str.getTagId1() != null) {
+				stuTagList.add(tagDAO.getTagById(str.getTagId1()).getName());
 			}
-			if(ptr.getTagId2() != null) {
-				proTagList.add(tagDAO.getTagById(ptr.getTagId2()).getName());
+			if(str.getTagId2() != null) {
+				stuTagList.add(tagDAO.getTagById(str.getTagId2()).getName());
 			}
-			if(ptr.getTagId3() != null) {
-				proTagList.add(tagDAO.getTagById(ptr.getTagId3()).getName());
+			if(str.getTagId3() != null) {
+				stuTagList.add(tagDAO.getTagById(str.getTagId3()).getName());
 			}
-			if(ptr.getTagId4() != null) {
-				proTagList.add(tagDAO.getTagById(ptr.getTagId4()).getName());
+			if(str.getTagId4() != null) {
+				stuTagList.add(tagDAO.getTagById(str.getTagId4()).getName());
 			}
-			if(ptr.getTagId5() != null) {
-				proTagList.add(tagDAO.getTagById(ptr.getTagId5()).getName());
+			if(str.getTagId5() != null) {
+				stuTagList.add(tagDAO.getTagById(str.getTagId5()).getName());
 			}
-			if(ptr.getTagId6() != null) {
-				proTagList.add(tagDAO.getTagById(ptr.getTagId6()).getName());
+			if(str.getTagId6() != null) {
+				stuTagList.add(tagDAO.getTagById(str.getTagId6()).getName());
 			}
-			String keyword = npList.get(i).getKeyword();	//获得备注关键词
-			for(int j=0; j<stuTagList.size(); j++) {
-				if(proTagList != null && proTagList.size() > 0) {
-					for(int k=0; k<proTagList.size(); k++) {
-						if(stuTagList.get(j).equals(proTagList.get(k)))
+			
+			//给每个项目进行推荐评分
+			for(int i=0; i<npList.size(); i++) {
+				float score = 0;
+				int num = 0;
+				
+				//1.标签
+				//获得项目的标签列表
+				ProjectTagRelation ptr = ptrDAO.getProjectByProjectId(npList.get(i).getId());
+				List<String> proTagList = new ArrayList<String>(); 
+				if(ptr.getTagId1() != null) {
+					proTagList.add(tagDAO.getTagById(ptr.getTagId1()).getName());
+				}
+				if(ptr.getTagId2() != null) {
+					proTagList.add(tagDAO.getTagById(ptr.getTagId2()).getName());
+				}
+				if(ptr.getTagId3() != null) {
+					proTagList.add(tagDAO.getTagById(ptr.getTagId3()).getName());
+				}
+				if(ptr.getTagId4() != null) {
+					proTagList.add(tagDAO.getTagById(ptr.getTagId4()).getName());
+				}
+				if(ptr.getTagId5() != null) {
+					proTagList.add(tagDAO.getTagById(ptr.getTagId5()).getName());
+				}
+				if(ptr.getTagId6() != null) {
+					proTagList.add(tagDAO.getTagById(ptr.getTagId6()).getName());
+				}
+				String keyword = npList.get(i).getKeyword();	//获得备注关键词
+				for(int j=0; j<stuTagList.size(); j++) {
+					if(proTagList != null && proTagList.size() > 0) {
+						for(int k=0; k<proTagList.size(); k++) {
+							if(stuTagList.get(j).equals(proTagList.get(k)))
+								num++;
+						}
+					}
+					if(keyword != null && keyword != "") {
+						if(keyword.indexOf(stuTagList.get(j)) > -1)
 							num++;
 					}
 				}
-				if(keyword != null && keyword != "") {
-					if(keyword.indexOf(stuTagList.get(j)) > -1)
-						num++;
+				
+				score = (float)(W1 * num / stuTagList.size());
+				
+				//2.创建时间				
+				Date createtime = npList.get(i).getCreatetime();
+				Date nowtime = new Date();
+				long between = (nowtime.getTime()-createtime.getTime())/1000;//除以1000是为了转换成秒
+				long day = between/(24*3600);
+				if(day <= 3) {
+					score += (float) (W2 * 1.0);
+				} else if( day>7 && day<=14) {
+					score += (float)(W2 * 0.8);
+				} else if( day>14 && day<=30) {
+					score += (float)(W2 * 0.5);
+				} else if( day>30 ) {
+					score +=(float)(W2 * 0.3);
 				}
+				
+				ProjectData pd = new ProjectData();
+				pd.projectId = npList.get(i).getId();
+				pd.score = score;
+				
+				crList.add(pd);
 			}
-			
-			score = (float)(W1 * num / stuTagList.size());
-			
-			//2.创建时间				
-			Date createtime = npList.get(i).getCreatetime();
-			Date nowtime = new Date();
-			long between = (nowtime.getTime()-createtime.getTime())/1000;//除以1000是为了转换成秒
-			long day = between/(24*3600);
-			if(day <= 3) {
-				score += (float) (W2 * 1.0);
-			} else if( day>7 && day<=14) {
-				score += (float)(W2 * 0.8);
-			} else if( day>14 && day<=30) {
-				score += (float)(W2 * 0.5);
-			} else if( day>30 ) {
-				score +=(float)(W2 * 0.3);
+		} else {
+			for(int i=0; i<npList.size(); i++) {
+				float score = 0;
+				
+				//创建时间
+				Date createtime = npList.get(i).getCreatetime();
+				Date nowtime = new Date();
+				long between = (nowtime.getTime()-createtime.getTime())/1000;//除以1000是为了转换成秒
+				long day = between/(24*3600);
+				if(day <= 3) {
+					score += (float) (W2 * 1.0);
+				} else if( day>7 && day<=14) {
+					score += (float)(W2 * 0.8);
+				} else if( day>14 && day<=30) {
+					score += (float)(W2 * 0.5);
+				} else if( day>30 ) {
+					score +=(float)(W2 * 0.3);
+				}
+				
+				ProjectData pd = new ProjectData();
+				pd.projectId = npList.get(i).getId();
+				pd.score = score;
+				
+				crList.add(pd);
 			}
-			
-			ProjectData pd = new ProjectData();
-			pd.projectId = npList.get(i).getId();
-			pd.score = score;
-			
-			crList.add(pd);
 		}
 		return crList;
+	}
+	
+	//基于物品的协同过滤
+	public List<ProjectData> projectCF(List<Project> jpList, List<Project> npList) {
+		int jpNum = jpList.size();
+		int npNum = npList.size();
+		
+		Simi[][] simi = new Simi[jpNum][npNum];
+		for(int i=0; i<jpNum; i++)
+			for(int j=0; j<npNum; j++)
+				simi[i][j] = new Simi();
+		
+		for(int i=0; i<jpNum; i++) {
+			for(int j=0; j<npNum; j++) {
+				SimilarCos sc1 = new SimilarCos(jpList.get(i).getName(), npList.get(j).getName());
+				SimilarCos sc2 = new SimilarCos(jpList.get(i).getDescription(), npList.get(j).getDescription());
+				SimilarCos sc3 = new SimilarCos(jpList.get(i).getRequirement(), npList.get(j).getRequirement());
+				
+				simi[i][j].value = 0.2*sc1.sim() + 0.4*sc2.sim() + 0.4*sc3.sim();
+				simi[i][j].jpId = jpList.get(i).getId();
+				simi[i][j].npId = npList.get(j).getId();
+			}
+		}
+		
+		
+		List<ProjectData> cfList = new ArrayList<ProjectData>();
+		//找出推荐的项目与所有参加过的项目的相似度最大值
+		for(int i=0; i<npNum; i++) {
+			ProjectData pd = new ProjectData();
+			Simi max = simi[0][i];
+			for(int j=0; j<jpNum; j++) {
+				if(simi[j][i].value > max.value) {
+					max = simi[j][i];
+				}
+			}
+			pd.projectId = max.npId;
+			pd.score = max.value;
+			
+			cfList.add(pd);
+		}
+		return cfList;
 	}
 	
 	public ProjectDAO getProjectDAO() {
@@ -294,3 +374,4 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 }
+

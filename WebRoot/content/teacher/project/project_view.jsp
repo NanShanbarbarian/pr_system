@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-family: "微软雅黑";
 			font-weight: lighter;
 			margin: 30px auto;
-			padding: 100px 20px 80px 20px;
+			padding: 50px 20px 50px 20px;
 			background-color: #fff;
 		}
 		.form-group label {
@@ -152,12 +152,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$('#nav3').show();
 						$('#nav4').show();
 						$('#status_content').append($("<input class = 'form-control' type='text' name='status' id='status' value='发布中'>"));
-						$('#foot_content').append($("<div class='col-sm-4 col-sm-offset-6'><a class='btn btn-info' href='javascript:void(0);'onclick='project_start()' style='font-size: 13px;'>开始项目</a>&nbsp;&nbsp;&nbsp;<a class='btn btn-info' href='javascript:void(0);' onclick='project_remove()' style='font-size: 13px;'>删除项目</a></div>"));
+						$('#foot_content').append($("<div class='col-sm-4 col-sm-offset-6'><a class='btn btn-info' href='javascript:void(0);'onclick='project_start()' style='font-size: 13px;'>开始项目</a>&nbsp;&nbsp;&nbsp;<a class='btn btn-info' href='content/teacher/project/project_my.jsp' style='font-size: 13px;'>确定返回</a></div>"));
 					} else if(data.status == 1) {  //进行中
 						$('#nav1').show();
 						$('#nav2').show();
 						$('#status_content').append($("<input class = 'form-control' type='text' name='status' id='status' value='进行中'>"));
-						$('#foot_content').append($("<div class='col-sm-4 col-sm-offset-6' ><a class='btn btn-info' href='javascript:void(0);' onclick='project_finish()' style='font-size: 13px;'>完成项目</a>&nbsp;&nbsp;&nbsp;<a class='btn btn-info' href='javascript:void(0);' onclick='project_remove()' style='font-size: 13px;'>删除项目</a></div>"));
+						$('#foot_content').append($("<div class='col-sm-4 col-sm-offset-6' ><a class='btn btn-info' href='javascript:void(0);' onclick='project_finish()' style='font-size: 13px;'>完成项目</a>&nbsp;&nbsp;&nbsp;<a class='btn btn-info' href='content/teacher/project/project_my.jsp' style='font-size: 13px;'>确定返回</a></div>"));
 					} else if(data.status == 2) {   //已完成
 						$('#nav1').show();
 						$('#nav2').show();
@@ -192,22 +192,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$.ajax({
 				type : 'post',
 				url : 'project_finish.action',
-				data : {
-					id : '${param.id}'
-				},
-				success : function() {
-					window.location.href = "content/teacher/project/project_my.jsp";
-				},
-				error : function() {
-					window.location.href = "content/teacher/project/project_my.jsp";
-				}
-			});
-		}
-		
-		function project_remove() {
-			$.ajax({
-				type : 'post',
-				url : 'project_remove.action',
 				data : {
 					id : '${param.id}'
 				},

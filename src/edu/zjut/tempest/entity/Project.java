@@ -14,7 +14,7 @@ public class Project implements java.io.Serializable {
 	private static final long serialVersionUID = -4312301145865912751L;
 	private Integer id;
 	private String name;
-	private Integer num;
+	private String num;
 	private String period;
 	private String keyword;
 	private String description;
@@ -22,33 +22,11 @@ public class Project implements java.io.Serializable {
 	private Integer teacherId;
 	private Integer status;
 	private Integer selectCount;
+	private String state;
 	private Date createtime;
 
 	public Project() {
-	}
-
-	public Project(String name, int num, String period, int teacherId, int status, int selectCount, Date createtime) {
-		this.name = name;
-		this.num = num;
-		this.period = period;
-		this.teacherId = teacherId;
-		this.status = status;
-		this.selectCount = selectCount;
-		this.createtime = createtime;
-	}
-
-	public Project(String name, int num, String period, String keyword, String description, String requirement,
-			int teacherId, int status, int selectCount, Date createtime) {
-		this.name = name;
-		this.num = num;
-		this.period = period;
-		this.keyword = keyword;
-		this.description = description;
-		this.requirement = requirement;
-		this.teacherId = teacherId;
-		this.status = status;
-		this.selectCount = selectCount;
-		this.createtime = createtime;
+		
 	}
 
 	public Integer getId() {
@@ -67,11 +45,11 @@ public class Project implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Integer getNum() {
+	public String getNum() {
 		return this.num;
 	}
 
-	public void setNum(Integer num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
 
@@ -137,6 +115,14 @@ public class Project implements java.io.Serializable {
 
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }

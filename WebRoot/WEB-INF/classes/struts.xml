@@ -55,6 +55,7 @@
 			<result name="getListByStuLoginId_success" type="dispatcher">content/student/project/project_my_list.jsp</result>
 			<result name="recommend_success" type="dispatcher">content/student/project/project_recommend_list.jsp</result>
 			<result name="getAllList_success" type="dispatcher">content/project/project_manage.jsp</result>
+			<result name="getById_success" type="dispatcher">content/teacher/project/project_alter.jsp</result>
 		</action>
 		
 		<action name="ptr*" class="PtrAction" method="ptr{1}"></action>
@@ -163,6 +164,13 @@
 			<result name="getListByStuLoginId_success" type="dispatcher">content/student/mentor/mentor_list.jsp</result>
 			<result name="applyStudent_success" type="dispatcher">content/teacher/mentor/student_apply.jsp</result>
 			<result name="selectedStudent_success" type="dispatcher">content/teacher/mentor/student_selected.jsp</result>
+		</action>
+		
+		<action name="notice*" class="NoticeAction" method="notice{1}">
+			<result name="getList_success" type="dispatcher">content/notice/notice_manage.jsp</result>
+			<result name="getById_success" type="dispatcher">content/notice/notice_info.jsp</result>
+			<result name="getById2_success" type="dispatcher">content/notice/notice_info2.jsp</result>
+			<result name="getRecentList_success" type="dispatcher">content/notice/index.jsp</result>
 		</action>
 	</package>
 </struts>    

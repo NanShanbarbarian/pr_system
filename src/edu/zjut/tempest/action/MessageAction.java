@@ -56,12 +56,14 @@ public class MessageAction {
 			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 			if(senderId != null) {
 				msgList = messageService.getMessageBySenderId(projectId, senderId);
-				for(int i=0; i<msgList.size(); i++) {
-					Map<String, Object> map = new LinkedHashMap<String, Object>();
-					map.put("id", msgList.get(i).getId());
-					map.put("createtime", DateUtil.datetime((msgList.get(i).getCreatetime())));
-					
-					list.add(map);
+				if(msgList != null && msgList.size() > 0) {
+					for(int i=0; i<msgList.size(); i++) {
+						Map<String, Object> map = new LinkedHashMap<String, Object>();
+						map.put("id", msgList.get(i).getId());
+						map.put("createtime", DateUtil.datetime((msgList.get(i).getCreatetime())));
+						
+						list.add(map);
+					}
 				}
 			} else if(receiverId != null) {
 				msgList = messageService.getMessageByReceiverId(projectId, receiverId);

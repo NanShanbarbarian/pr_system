@@ -35,19 +35,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<section class="main-container">
 			<jsp:include page="top.jsp"></jsp:include>
 			<section>
-				<!-- <ul class="breadcrumb nav-bar">
+				<ul class="breadcrumb nav-bar">
 					<li><a href="javascript:void(0);">科技创新智能互助平台</a></li>
 					<li class="active">首页</li> 
 				</ul>
-				<div class="main-content">
-				欢迎来到科技创新智能互助平台!
-				</div> -->
+				<div id="main-content" class="main-content">
+				</div>
 			</section>
 		</section>
 	</section>
 
 <script>
-	$.sidebarMenu($('.sidebar-menu'))
+	$.sidebarMenu($('.sidebar-menu'));
+	
+	$(function() {
+		$.ajax({
+			type: 'post',
+			url: 'notice_getRecentList.action',
+			dataType: 'html',
+			success: function(data) {
+				$("#main-content").html(data);
+			}
+		});
+	});
+	
 </script>
 
 </body>

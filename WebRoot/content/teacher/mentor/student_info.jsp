@@ -12,10 +12,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<base href="<%=basePath%>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>科技创新智能互助平台</title>
-	
-	<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/sidebar/sidebar-menu.css">
 	<link rel="stylesheet" href="css/main.css">
 	
 	<style type="text/css">
@@ -25,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-family: "微软雅黑";
 			font-weight: lighter;
 			margin: 30px auto;
-			padding: 100px 20px 80px 20px;
+			padding: 50px 20px 50px 20px;
 			background-color: #fff;
 		}
 		
@@ -181,12 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</div>
     </div>
 	</c:if>
-<script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
-<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/sidebar//sidebar-menu.js"  type="text/javascript"></script>
 <script>
-	$.sidebarMenu($('.sidebar-menu'));
-	
 	$(function(){
 		$.ajax({
 			type : 'post',

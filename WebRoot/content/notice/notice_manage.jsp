@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-size: 14px;
 			font-weight: lighter;
 			margin: 30px auto;
-			padding: 50px;
+			padding: 60px 20px 80px 20px;
 			background-color: #fff;
 		}
 		
@@ -61,56 +61,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-size: 14px;
 			color: #444444 !important;
 		}
-		
-		.form-group label {
-			font-family: '微软雅黑';
-			font-weight: lighter !important; 
-			font-size: 14px;
-		}
 	</style>
 </head>
 
 <body>
 	<div class="manage_content">
-		<p class="manage_title">我的项目</p>
+		<c:if test="${sessionScope.login.role == '0' || sessionScope.login.role =='1'}">
+		<div style="margin-bottom: 3px;">
+			<button class="btn btn-info" onclick="notice_publish()" style="font-size: 13px;">发布公告</button>
+		</div>
+		</c:if>
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>序号</th>
-					<th>项目名</th>
-					<th>项目人数</th>
-					<th>开发周期</th>
-					<th>创建时间</th>
-					<th>项目状态</th>
+					<th>发布人</th>
+					<th>标题</th>
+					<th>发布时间</th>
+					<th>操作</th>
 				</tr>
 			</thead>
 			<tbody>		
 				<c:if test="${list == null}">
 				<tr>
-	                <td colspan="10">没有项目记录！</td>
-	            </tr>
-				</c:if>	
+	                <td colspan="10">没有系统公告！</td>
+	           	</tr>
+				</c:if>		
 				<c:if test="${list != null}">
-				<%  int num = (Integer)request.getAttribute("currPage");
-    			int i= (num-1)*10; %>	
 				<c:forEach items="${list}" var="item"> 
 				<tr>
-					<% i++; %> 
-    				<td onclick="clickThis(${item.id})"><%= i %></td>
-	    			<td onclick="clickThis(${item.id})">${item.name}</td>
-	    			<td onclick="clickThis(${item.id})">${item.num}</td>
-	    			<td onclick="clickThis(${item.id})">${item.period}</td>
-	    			<td onclick="clickThis(${item.id})">${item.createtime}</td>
-	    			<c:if test="${item.status == '0'}">
-	    				<td onclick="clickThis(${item.id})">发布中</td>
-	    			</c:if>
-	    			<c:if test="${item.status == '1'}">
-	    				<td onclick="clickThis(${item.id})">进行中</td>
-	    			</c:if>
-	    			<c:if test="${item.status == '2'}">
-	    				<td onclick="clickThis(${item.id})">已完成</td>
-	    			</c:if>
-	    		</tr>
+	    			<td>${item.create_user}</td>
+	    			<td>${item.title}</td>
+	    			<td>${item.createtime}</td>
+	    			<td>
+						<button class="btn btn-info btn-xs" onclick="notice_getById(${item.id})">查看</button>
+						<c:if test="${sessionScope.login.role == '0' || sessionScope.login.role =='1'}">
+						<button class="btn btn-danger btn-xs" onclick="notice_delete(${item.id})">删除</button>
+						</c:if>
+					</td>
+				</tr>
 				</c:forEach>
 				</c:if>
 			</tbody>
@@ -118,12 +106,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <tr>
 	                <td colspan="10">
 	                	共${totalRows}条记录,${currPage}/${totalPage}页
-	    			<a href="javascript:void(0);" onclick="project_manage(1)" class="link">首页</a>
-	    			<a href="javascript:void(0);" onclick="project_manage(${currPage-1})" class="link">上一页</a>
-	    			<a href="javascript:void(0);" onclick="project_manage(${currPage+1})" class="link">下一页</a>
-	    			<a href="javascript:void(0);" onclick="project_manage(${totalPage})" class="link">末页</a>
+	    			<a href="javascript:void(0);" onclick="notice_manage(1)" class="link">首页</a>
+	    			<a href="javascript:void(0);" onclick="notice_manage(${currPage-1})" class="link">上一页</a>
+	    			<a href="javascript:void(0);" onclick="notice_manage(${currPage+1})" class="link">下一页</a>
+	    			<a href="javascript:void(0);" onclick="notice_manage(${totalPage})" class="link">末页</a>
 	    			<input type="text" id="manage_page" name="manage_page" style="width: 30px; vertical-align: middle;" />
-	    			<button onclick="project_mangage_jump()" class="btn btn-info" style="font-size:13px; padding: 3px; margin: 0px; vertical-align: middle;">跳转</button>
+	    			<button onclick="notice_mangage_jump()" class="btn btn-info" style="font-size:13px; padding: 3px; margin: 0px; vertical-align: middle;">跳转</button>
 	    			</td>
 	            </tr>
 	        </tfoot>
@@ -131,24 +119,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	
 <script type="text/javascript">
-	function project_mangage_jump() {
+	function notice_mangage_jump() {
 		var page = $("#manage_page").val();
-		project_manage(page);
+		notice_manage(page);
 	}
-	
-	function clickThis(id) {
+
+	function notice_publish() {
 		$.ajax({
 			type : 'post',
-			url : 'content/student/project/project_view.jsp',
-			data : {
-				id : id
-			},
+			url : 'content/notice/notice_save.jsp',
 			dataType : 'html',
 			success : function(data) {
 				$('#manage_content').html(data);
 			},
-			error : function() {
-				alert("查看项目失败！");
+			error : function(data) {
+				window.location.href = "content/notice/notice.jsp";
+			}
+		});
+	}
+	
+	function notice_getById(id) {
+		$.ajax({
+			type : 'post',
+			url : 'notice_getById.action?id=' + id,
+			dataType : 'html',
+			success : function(data) {
+				$('#manage_content').html(data); 
+			},
+			error : function(data) {
+				window.location.href = "content/notice/notice_info.jsp";
+			} 
+		});
+	}
+	
+	function notice_delete(id) {
+		$.ajax({
+			type : 'post',
+			url : 'notice_delete.action?id=' + id,
+			dataType : 'html',
+			success : function(data) {
+				window.location.href = "content/notice/notice.jsp";
+			},
+			error : function(data) {
+				window.location.href = "content/notice/notice.jsp";
 			}
 		});
 	}
